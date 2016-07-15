@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="keX-Rw-OJ9">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vrM-vi-PQn" customClass="LoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Am4-KK-XoG"/>
+                        <viewControllerLayoutGuide type="bottom" id="lG5-V9-etP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pLc-eV-TFj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMB-xZ-xOu">
+                                <rect key="frame" x="60" y="233" width="480" height="80"/>
+                                <color key="backgroundColor" red="0.36470588240000001" green="0.78039215689999997" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="登     录">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="Login:" destination="vrM-vi-PQn" eventType="touchUpInside" id="CLa-Hn-m7V"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="第三方登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hac-6V-4Su">
+                                <rect key="frame" x="257" y="360" width="85" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Hac-6V-4Su" secondAttribute="height" multiplier="85:21" id="EDt-4L-F9r"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VMB-xZ-xOu" firstAttribute="centerX" secondItem="pLc-eV-TFj" secondAttribute="centerX" id="Mlv-hk-PFx"/>
+                            <constraint firstItem="VMB-xZ-xOu" firstAttribute="centerY" secondItem="pLc-eV-TFj" secondAttribute="centerY" multiplier="5:6" id="Swf-ac-Pra"/>
+                            <constraint firstItem="Hac-6V-4Su" firstAttribute="top" secondItem="VMB-xZ-xOu" secondAttribute="bottom" multiplier="1.2:1" constant="40" id="To7-sC-y5f"/>
+                            <constraint firstItem="VMB-xZ-xOu" firstAttribute="width" secondItem="pLc-eV-TFj" secondAttribute="width" multiplier="4:5" id="d1B-YJ-f6N"/>
+                            <constraint firstItem="Hac-6V-4Su" firstAttribute="centerX" secondItem="pLc-eV-TFj" secondAttribute="centerX" id="w79-6Y-uwR"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="login" destination="VMB-xZ-xOu" id="dkO-LR-BKP"/>
+                        <outlet property="thirdloginLB" destination="Hac-6V-4Su" id="y4G-MH-hBe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gFG-tg-LO6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="278" y="313"/>
+        </scene>
+    </scenes>
+</document>

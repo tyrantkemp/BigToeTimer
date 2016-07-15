@@ -1,0 +1,30 @@
+//
+//  PrefixHeader.pch
+//  BigToeTimer
+//
+//  Created by 肖准 on 7/11/16.
+//  Copyright © 2016 xiaozhun. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "constants.h"
+#import "RESideMenu.h"
+#import "XZHttp.h"
+#import "Utils.h"
+//#import <Realm/Realm.h>
+//#import <Realm+JSON/RLMObject+JSON.h>
+#import "UIImage+Util.h"
+#import "ZXPAutoLayout.h"
+#import "MJExtension.h"
+#import "BlocksKit.h"
+#import "BlocksKit+UIKit.h"
+#import "NSDate+DateTools.h"
+
+#import <tingyunApp/NBSAppAgent.h>
+#import "Config.h"
+#endif /* PrefixHeader_pch */
