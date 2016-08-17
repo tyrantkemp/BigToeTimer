@@ -7,7 +7,7 @@
 //
 
 #import "RootViewController.h"
-
+#import "SideMenuViewController.h"
 @interface RootViewController ()
 
 @end
@@ -22,6 +22,11 @@
     self.contentViewShadowRadius = 4.5;
     
     self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainContentBarCtl"];
+    
+    //设置
+  
+    self.leftMenuViewController = [SideMenuViewController new];
+    
 }
 
 

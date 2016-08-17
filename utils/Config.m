@@ -31,6 +31,7 @@ NSString * const kLocation = @"location";
 NSString * const kTrueName = @"trueName";
 NSString * const kSex = @"sex";
 NSString * const kPhoneNumber = @"phoneNumber";
+NSString * const kUserEmail = @"email";
 NSString * const kCorporation = @"corporation";
 NSString * const kPosition = @"position";
 
@@ -52,20 +53,15 @@ NSString * const kTeamsArray = @"teams";
 
 #pragma mark - user profile
 //
-//+ (void)saveProfile:(OSCUser *)user
-//{
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    
-//    [userDefaults setInteger:user.userID forKey:kUserID];
-//    [userDefaults setObject:user.name forKey:kUserName];
-//    [userDefaults setURL:user.portraitURL forKey:kPortraitURL];
-//    [userDefaults setObject:@(user.score) forKey:kUserScore];
-//    [userDefaults setObject:@(user.favoriteCount) forKey:kFavoriteCount];
-//    [userDefaults setObject:@(user.fansCount)      forKey:kFanCount];
-//    [userDefaults setObject:@(user.followersCount) forKey:kFollowerCount];
-//    
-//    [userDefaults synchronize];
-//}
++ (void)saveProfile:(userMJ *)user
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setInteger:user.userId forKey:kUserID];
+    [userDefaults setObject:user.userName forKey:kUserName];
+    [userDefaults setObject:user.mobile forKey:kPhoneNumber];
+    [userDefaults setObject:user.email forKey:kUserEmail];
+    [userDefaults synchronize];
+}
 //
 //+ (void)updateProfile:(OSCUser *)user
 //{
@@ -92,38 +88,26 @@ NSString * const kTeamsArray = @"teams";
     
     [userDefaults setObject:@(0) forKey:kUserID];
     [userDefaults setObject:@"点击头像登录" forKey:kUserName];
-    [userDefaults setObject:@(0) forKey:kUserScore];
-    [userDefaults setObject:@(0) forKey:kFavoriteCount];
-    [userDefaults setObject:@(0) forKey:kFanCount];
-    [userDefaults setObject:@(0) forKey:kFollowerCount];
-    
+    [userDefaults setObject:@(0) forKey:kPhoneNumber];
+    [userDefaults setObject:@(0) forKey:kUserEmail];
     [userDefaults synchronize];
 }
-//
-//+ (OSCUser *)myProfile
-//{
-//    OSCUser *user = [OSCUser new];
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    
-//    user.userID = [userDefaults integerForKey:kUserID];
-//    user.name = [userDefaults objectForKey:kUserName];
-//    user.portraitURL = [userDefaults URLForKey:kPortraitURL];
-//    user.score = [[userDefaults objectForKey:kUserScore] intValue];
-//    user.favoriteCount = [[userDefaults objectForKey:kFavoriteCount] intValue];
-//    user.fansCount = [[userDefaults objectForKey:kFanCount] intValue];
-//    user.followersCount = [[userDefaults objectForKey:kFollowerCount] intValue];
-//    
-//    user.joinTime = [userDefaults objectForKey:kJoinTime];
-//    user.location = [userDefaults objectForKey:kLocation];
-//    user.expertise = [userDefaults objectForKey:kExpertise];
-//    user.developPlatform = [userDefaults objectForKey:kDevelopPlatform];
-//    
-//    if (!user.name) {
-//        user.name = @"点击头像登录";
-//    }
-//    
-//    return user;
-//}
+
++ (userMJ *)myProfile
+{
+    userMJ *user = [userMJ new];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    user.userId = [userDefaults integerForKey:kUserID];
+    user.userName = [userDefaults objectForKey:kUserName];
+    user.mobile = [userDefaults objectForKey:kPhoneNumber];
+    user.email = [userDefaults objectForKey:kUserEmail];
+    
+    if (!user.userName) {
+        user.userName = @"点击头像登录";
+    }
+    return user;
+}
 
 
 

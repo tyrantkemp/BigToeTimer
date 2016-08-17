@@ -11,9 +11,12 @@
 #import "planTableViewCell.h"
 #import <SWTableViewCell.h>
 #import "MBProgressHUD.h"
-
+#import "detailViewController.h"
 #import "m_date.h"
 #import "planMJ.h"
+
+#import "LocalNotificationsManager.h"
+
 static NSString * cellId = @"ListViewcell";
 
 @interface ListViewController ()<SWTableViewCellDelegate>{
@@ -26,7 +29,8 @@ static NSString * cellId = @"ListViewcell";
     NSMutableArray* _alldaydataArray;
     NSTimer* _timer;
 }
-@property (nonatomic, strong) MBProgressHUD *hud;
+
+@property(nonatomic,assign)NSInteger predayindex;
 
 @end
 
@@ -38,14 +42,15 @@ static NSString * cellId = @"ListViewcell";
         _alldayArr = [NSMutableArray new];
         _limitdateArray = [NSMutableArray new];
         _alldaydataArray = [NSMutableArray new];
-        
+        _predayindex = 0;
         
         _cellheight = 100;
         __weak ListViewController * corpctl = self;
         
         self.generateURL = ^NSString*(NSUInteger page){
-            NSString* url =[NSString stringWithFormat:@"%@%@%@?userId=%@", MAIN, LIST,LIST_ALL_DATA,[NSString stringWithFormat:@"%lld",[Config getOwnID]]];
-            NSLog(@"url:%@",url);
+            
+            NSString* url =[NSString stringWithFormat:@"%@%@%@?userId=%@&predayindex=%d", MAIN, LIST,LIST_ALL_DATA,[NSString stringWithFormat:@"%lld",[Config getOwnID]],_predayindex];
+            //NSLog(@"url:%@",url);
             return url;
             
         };
@@ -58,7 +63,8 @@ static NSString * cellId = @"ListViewcell";
         self.objClass = [planMJ class];
         //self.shouldFetchDataAfterLoaded = NO;
         self.needAutoRefresh = NO;
-        self.isRefreshAfterInit  =NO;
+        self.isRefreshAfterInit  =YES;
+        self.shouldFetchDataAfterLoaded = NO;
        // self.refreshInterval = 21600;
         //self.kLastRefreshTime = @"CorporationRefreshInterval";
     }
@@ -66,38 +72,42 @@ static NSString * cellId = @"ListViewcell";
     
     return self;
 }
-
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+   
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshuser) name:@"userRefresh" object:nil];
     //注册cell
-  
+    [self.tableView.mj_header beginRefreshing];
+    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height)
+                            animated:YES];
     [self.tableView registerClass:[planTableViewCell class] forCellReuseIdentifier:cellId];
     //注册消息
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(planCreate:) name:PLAN_NEW object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(PlanEdit:) name:PLAN_EDIT object:nil];
     
     
-    NSString* year = [NSString stringWithFormat:@"%ld年",(long)[[NSDate new] year]];
-    NSString* month = [NSString stringWithFormat:@"%ld月",(long)[[NSDate new] month]];
-    NSString* day = [NSString stringWithFormat:@"%ld日",(long)[[NSDate new] day]];
-
-    self.navigationItem.title = [NSString stringWithFormat:@"%@%@%@",year,month,day];
+    self.navigationItem.title = [[NSDate date] currentTimeStringYMD];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"前一天" style:UIBarButtonItemStylePlain target:self action:@selector(preday)];
-//
-//    for (int i=0; i<5; i++) {
-//        m_date *date = [m_date timeModelWithTime:[NSDate dateWithYear:0 month:0 day:0 hour:0 minute:0 second:((i+1)*60)]];
-//        
-//        [_dateArray addObject:date];
-//        
-//    }
-    
 
     
 }
-
+#pragma mark- 用户登录注册刷新
+-(void)refreshuser{
+    
+    [self.tableView.mj_header beginRefreshing];
+    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height)
+                            animated:YES];
+  
+}
 
 - (void)createTimer {
     _timer = [NSTimer timerWithTimeInterval:60.0 target:self selector:@selector(timerEvent) userInfo:nil repeats:YES];
@@ -117,9 +127,39 @@ static NSString * cellId = @"ListViewcell";
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_TIME_CELL object:nil];
 }
 
-
+#pragma mark - 前一天
 -(void)preday{
     NSLog(@"前一天");
+    _predayindex++;
+    if(_predayindex>0){
+          self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"后一天" style:UIBarButtonItemStylePlain target:self action:@selector(aferday)];
+    }
+    
+    self.navigationItem.title = [[[NSDate date] dateBySubtractingDays:_predayindex] currentTimeStringYMD];
+    
+    NSLog(@"predayindex:%ld",(long)_predayindex);
+    [self.tableView.mj_header beginRefreshing];
+    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height)
+                            animated:YES];
+
+  //  [self refresh];
+}
+#pragma mark 后一天
+-(void)aferday{
+    NSLog(@"后一天");
+    _predayindex--;
+    if (_predayindex==0) {
+        self.navigationItem.rightBarButtonItem=nil;
+    }
+    self.navigationItem.title = [[[NSDate date] dateBySubtractingDays:_predayindex] currentTimeStringYMD];
+
+    NSLog(@"aferday:%ld",(long)_predayindex);
+
+    [self.tableView.mj_header beginRefreshing];
+    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height)
+                            animated:YES];
+    //[self refresh];
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -209,17 +249,26 @@ static NSString * cellId = @"ListViewcell";
     //[cell loadTime:date indexPath:indexPath];
     if(indexPath.section==0 && _limitArr.count>0){
         cell.index = [indexPath row]+1;
-        [cell loyoutWithDataAndHeight:_limitArr[indexPath.row] height:_cellheight] ;
+        [cell loyoutWithDataAndHeight:_limitArr[indexPath.row] height:_cellheight isShow:NO] ;
         [cell loadTime:_limitdateArray[indexPath.row] indexPath:indexPath];
     }else if(indexPath.section==1 && _alldayArr.count>0){
         cell.index = [indexPath row]+1;
-        [cell loyoutWithDataAndHeight:_alldayArr[indexPath.row] height:_cellheight] ;
+        [cell loyoutWithDataAndHeight:_alldayArr[indexPath.row] height:_cellheight isShow:NO] ;
         [cell loadTime:_alldaydataArray[indexPath.row] indexPath:indexPath];
     }
-    
     __weak planTableViewCell* weakcell = cell;
-    cell.disableCell = ^(void){
-        weakcell.rightUtilityButtons = nil;
+    cell.disableCell = ^(NSInteger type){
+        
+        if (type==cellTypeExistAll) {
+            
+            
+        }else if(type==cellTypeExistDelete){
+
+            
+            
+        }else if(type==cellTypeExistNone){
+            weakcell.rightUtilityButtons = nil;
+        }
     };
     
     return cell;
@@ -234,6 +283,7 @@ static NSString * cellId = @"ListViewcell";
     return arr;
 }
 
+#pragma mark - cell 滑动 删除 完成
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index;
 {
     switch (index) {
@@ -242,6 +292,8 @@ static NSString * cellId = @"ListViewcell";
             UIAlertView * alert = [UIAlertView bk_showAlertViewWithTitle:@"确定取消该任务?" message:nil cancelButtonTitle:@"确定" otherButtonTitles:@[@"算了"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
                
                 if(buttonIndex == 0){
+                    
+                    
                     NSIndexPath * indexpath = [self.tableView indexPathForCell:cell];
                     NSInteger section = indexpath.section;
                     NSInteger row = indexpath.row;
@@ -257,6 +309,10 @@ static NSString * cellId = @"ListViewcell";
                     //服务器删除任务
                     NSString * url = [NSString stringWithFormat:@"%@%@%@",MAIN,LIST,PLAN_DELETE];
                     planTableViewCell* plancell = (planTableViewCell*)cell;
+                    
+                    //删除通知
+                    [LocalNotificationsManager removeLocalNotificationWithActivityId:plancell.plan.planName];
+
                     [[XZHttp sharedInstance]postWithURLString:url parameters:@{@"planName":plancell.plan.planName} success:^(id responseObject) {
                         
                         NSDictionary* res = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
@@ -264,18 +320,15 @@ static NSString * cellId = @"ListViewcell";
                         NSInteger isSuccess = [((NSString*)res[@"isSuccess"]) integerValue];
                         if(isSuccess!=1){
                             NSString* errMeesage = res[@"message"];
-                            _hud =[Utils createHUD];
-                            _hud.detailsLabelFont = [UIFont boldSystemFontOfSize:16];
-                            _hud.mode = MBProgressHUDModeCustomView;
-                            _hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
-                            _hud.labelText = errMeesage;
-                            [_hud hide:YES afterDelay:1];
+                      
+                            [Utils showHUDWithErrorMsg:errMeesage];
                         }else {
                             
                         }
                         
                     } failure:^(NSError *error) {
-                         [Utils createHUDErrorWithError:error];
+                        
+                        [Utils showHUDWithError:error];
                     }];
                 }else{
                     [cell hideUtilityButtonsAnimated:YES];
@@ -289,6 +342,47 @@ static NSString * cellId = @"ListViewcell";
         case 1:{
             NSLog(@"点击完成");
             
+            UIAlertView * alert = [UIAlertView bk_showAlertViewWithTitle:@"确定完成任务?" message:nil cancelButtonTitle:@"是" otherButtonTitles:@[@"否"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                
+                if(buttonIndex == 0){
+                    [cell hideUtilityButtonsAnimated:YES];
+
+                    //服务器删除任务
+                    NSString * url = [NSString stringWithFormat:@"%@%@%@",MAIN,LIST,PLAN_DONE];
+                    planTableViewCell* plancell = (planTableViewCell*)cell;
+                    //删除通知
+                    [LocalNotificationsManager removeLocalNotificationWithActivityId:plancell.plan.planName];
+                    //[plancell wellDone];
+                    double ration = plancell.ration;
+                    NSInteger sub =plancell.plan.endTime - [[NSDate date] minuteTime];
+                    
+                    NSString* s_sub = [NSString stringWithFormat:@"%d",sub];
+                    NSString *s_ration = [NSString stringWithFormat:@"%f",ration];
+                    [[XZHttp sharedInstance]postWithURLString:url parameters:@{@"planName":plancell.plan.planName,@"ration":s_ration,@"remain":s_sub} success:^(id responseObject) {
+                        
+                        NSDictionary* res = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+                        
+                        NSInteger isSuccess = [((NSString*)res[@"isSuccess"]) integerValue];
+                        if(isSuccess!=1){
+                            NSString* errMeesage = res[@"message"];
+                           
+                            [Utils showHUDWithErrorMsg:errMeesage];
+
+                        }else {
+                            [self refreshTable];
+                            
+                        }
+                        
+                    } failure:^(NSError *error) {
+                        [Utils showHUDWithError:error];
+                    }];
+                }else{
+                    [cell hideUtilityButtonsAnimated:YES];
+                }
+            }];
+            alert.delegate = self;
+            [alert show];
+
             
             [cell hideUtilityButtonsAnimated:YES];
 
@@ -330,6 +424,62 @@ static NSString * cellId = @"ListViewcell";
     
     NSLog(@"section:%d,row:%d",indexPath.section,indexPath.row);
     
+    //获取单个任务信息 查看or编辑
+    planTableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString * url = [NSString stringWithFormat:@"%@%@%@?planName=%@&userId=%lld",MAIN,LIST,PLAN_GET_ONE,cell.plan.planName,[Config getOwnID]];
+    
+
+    [Utils showHudInView:self.view hint:@"加载中..."];
+    
+    [[XZHttp sharedInstance]getWithURLString:url parameters:nil success:^(id responseObject) {
+        
+        [Utils hideHud];
+        NSDictionary* data = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        NSInteger isSuccess = [(NSString*)data[@"isSuccess"] integerValue];
+        // 获取成功 isSuccess == 0
+        if(isSuccess != 1){
+            NSString* errMeesage = data[@"message"];
+          
+            [Utils showHUDWithErrorMsg:errMeesage];
+
+            return;
+        }else {
+            
+        
+            planMJ* plan = [planMJ mj_objectWithKeyValues:data[@"data"]];
+            
+            
+            detailViewController * detailctl = [detailViewController new];
+            detailctl.plan=plan;
+            NSDate* now = [NSDate date];
+            NSInteger now_m = [now minuteTime];
+            if(_predayindex>0){
+                detailctl.editType =2;
+            }else   if(plan.remain!=0 || (plan.endTime<=now_m)){
+                detailctl.editType = 2;
+            }else if(now_m<plan.endTime){
+                detailctl.editType = 1;
+            }
+            
+            
+            NSLog(@"isPassed：%hhd",plan.isPassed);
+
+            [self presentModalViewController:detailctl animated:YES];
+            
+            
+            
+            
+            
+            
+            
+        }
+
+        
+    } failure:^(NSError *error) {
+        [Utils showHUDWithError:error];
+    }];
+    
+    
     
 }
 
@@ -343,6 +493,15 @@ static NSString * cellId = @"ListViewcell";
 -(NSArray*)parseJson:(id)responseObject{
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
     NSDictionary*data = dict[@"data"];
+    if(_limitArr.count>0){
+        [_limitArr removeAllObjects];
+        [_limitdateArray removeAllObjects];
+        
+    }
+    if(_alldayArr.count>0){
+        [_alldayArr removeAllObjects];
+        [_alldaydataArray removeAllObjects];
+    }
     _limitArr = [planMJ mj_objectArrayWithKeyValuesArray:data[@"limit"]];
     _alldayArr =[planMJ mj_objectArrayWithKeyValuesArray:data[@"allday"]];
     
@@ -389,20 +548,60 @@ static NSString * cellId = @"ListViewcell";
     }
     [self.tableView reloadData];
     
-    NSLog(@"创建plan-刷新table");
+   
+    NSInteger sub = plan.endTime - plan.startTime;
+    NSInteger limi = 1;
+    if(sub<=5){
+        limi = 1;
+    }else if(5<sub && sub<=10){
+        limi = 2;
+    }else if(sub>10 && sub<=30){
+        limi = 3;
+        
+    }else if(sub>30 && sub<=60){
+        limi = 10;
+    }else if(sub>60 && sub<= 180){
+        limi = 20;
+        
+    }else if(sub>180 && sub<= 360){
+        limi = 30;
+    }else if(sub>360){
+        limi = 60;
+    }
+    
+    //NSInteger firetime = plan.endTime  - limi;
+
+  //  NSDate* firedate = [NSDate dateWithYear:0 month:0 day:0 hour:22 minute:44 second:0];
+    
+   
+    NSDate *now = [NSDate date];
+    NSInteger temp = plan.endTime - [now minuteTime]-limi;
+   // NSDate * curr = [now dateByAddingMinutes:temp];
+  //  NSDate * firetime= [curr dateByAddingHours:8];
+    
+    //创建预警和警告提醒
+    [LocalNotificationsManager addLocalNotificationWithFireDate:[[NSDate date] dateByAddingMinutes:temp] activityId:plan.planName activityTitle:[NSString stringWithFormat:@"任务提醒:%@",plan.content]];
+    
+   // NSLog(@"创建plan-刷新table");
     
 
 }
 
 #pragma mark - 修改plan
 -(void)PlanEdit:(NSNotification*)noti{
-    planMJ* plan = noti.object;
+   // planMJ* plan = noti.object;
     NSLog(@"修改plan-刷新table");
     
+    [self refreshTable];
+
     
-
 }
-
+-(void)refreshTable{
+    
+    [self.tableView.mj_header beginRefreshing];
+    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height)
+                            animated:YES];
+}
 /*
 #pragma mark - Navigation
 

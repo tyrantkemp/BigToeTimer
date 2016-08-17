@@ -7,7 +7,8 @@
 //
 
 #import "planTableViewCell.h"
-
+#import "LocalNotificationsManager.h"
+#import "NSDate+Format.h"
 @interface planTableViewCell(){
     
     CGFloat _height;
@@ -19,6 +20,8 @@
     UIView* _backview;
     
     UIView* _mask;
+    
+    UILabel* _rangeLB;
     
     UIImageView* _icon;
     
@@ -46,6 +49,7 @@
         _isDisplay = YES;
         _index = 1;
         _ration = 0.0;
+        
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
     
@@ -58,9 +62,6 @@
 
 -(void)initsubviews{
  
-    
-  
-    
     //背景
     _backview = [UIView new];
     [self.contentView addSubview:_backview];
@@ -85,12 +86,22 @@
     //_timeLB.font = [UIFont boldSystemFontOfSize:30];
     _timeLB.font = [UIFont fontWithName:@"AvenirNext-UltraLight" size:30];
     _timeLB.textColor = [UIColor redColor];
-    _timeLB.text =[NSString stringWithFormat:@"剩余时间:"];
+    _timeLB.text =[NSString stringWithFormat:@":"];
     _timeLB.backgroundColor =[UIColor clearColor];
     _timeLB.textAlignment = NSTextAlignmentRight;
     [_backview  addSubview:_timeLB];
 
 
+    //时间期限
+    _rangeLB = [UILabel new];
+    _rangeLB.font = [UIFont systemFontOfSize:13];
+    _rangeLB.textColor = [UIColor lightGrayColor];
+    _rangeLB.backgroundColor =[UIColor clearColor];
+    _rangeLB.textAlignment = NSTextAlignmentRight;
+    [_backview  addSubview:_rangeLB];
+
+    
+    //任务内容
     _contentLB = [UILabel new];
     _contentLB.font = [UIFont systemFontOfSize:13];
     _contentLB.numberOfLines = 0;
@@ -100,16 +111,17 @@
     [_backview addSubview:_contentLB];
     
     
-    
     //图标
     _icon = [UIImageView new];
-    [self.contentView addSubview:_icon];
+    _icon.frame = CGRectMake(screenwith/3, 20, 64, 64);
+    [_backview addSubview:_icon];
+    
     
 }
 
 
 
--(void)loyoutWithDataAndHeight:(planMJ*)plan height:(CGFloat)height{
+-(void)loyoutWithDataAndHeight:(planMJ*)plan height:(CGFloat)height isShow:(BOOL)show{
 
     _height = 100;
     _plan = plan;
@@ -122,6 +134,18 @@
     //任务内容
     _contentLB.text = _plan.content;
   
+    //时间范围
+    NSDate* start = [NSDate dateWithYear:0 month:0 day:0 hour:0 minute:_plan.startTime second:0];
+    NSDate* end = [NSDate dateWithYear:0 month:0 day:0 hour:0 minute:_plan.endTime second:0];
+    if(show){
+        
+
+        _rangeLB.text =[NSString stringWithFormat:@"创建时间:%@",[NSDate dateStrFromCstampTime:[[_plan.createTime substringWithRange:NSMakeRange(0,10)] intValue] withDateFormat:@"yyyy-MM-dd HH:mm:ss" ]];
+
+    }else {
+    _rangeLB.text =[NSString stringWithFormat:@"%@ - %@",[start currentTimeStringHM],[end currentTimeStringHM]];
+    }
+    
     _titleLB.text = [NSString stringWithFormat:@"任务-%d",_index ];//@"任务 - "
     
     [_titleLB zxp_addConstraints:^(ZXPAutoLayoutMaker *layout) {
@@ -134,24 +158,54 @@
     }];
     
     [_contentLB zxp_addConstraints:^(ZXPAutoLayoutMaker *layout) {
-        layout.bottomSpace(4).leftSpace(15).widthValue(screenwith-30).heightValue(59);
+        layout.bottomSpace(4).leftSpace(15).widthValue(screenwith/3*10).heightValue(59);
     }];
     
+    [_rangeLB zxp_addConstraints:^(ZXPAutoLayoutMaker *layout) {
+        layout.leftSpace(screenwith/3).topSpaceEqualTo(_titleLB,4);
+    }];
     //遮盖层
     _mask.frame = CGRectMake(0, 0, 0, _height-0.5);
     _mask.backgroundColor = [UIColor colorWithRed:0.000 green:1.000 blue:0.000 alpha:0.298];
     
-}
+    if(show){
+    //表示已经在限时内完成
+    if(_plan.remain!=0){
+        NSDate *time = [NSDate dateWithYear:0 month:0 day:0 hour:0 minute:_plan.remain second:0];
+        _timeLB.text =[time currentTimeStringHM];
+        _contentLB.text = _plan.content;
+        [self setIcon:@"done"];
+        _timeLB.textColor=[UIColor greenColor];
+        if(_disableCell){
+            _disableCell(cellTypeExistNone);
+        }
+        
+        //提前完成
+        if(_plan.remain>(_plan.endTime - _plan.startTime)){
+            
+            
+         
+        }else {
+            
+            [_mask setFrame:CGRectMake(0, 0, screenwith*_plan.ration, _height-.5)];
+            _mask.backgroundColor = [UIColor colorWithRed:0.000 green:1.000 blue:0.000 alpha:0.298];
+        }
+      
+        
+        
+    }else {
+        _mask.frame = CGRectMake(0, 0, screenwith, _height-0.5);
+        _mask.backgroundColor = [UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:0.305];
+        [self setIcon:@"overtime"];
+        _contentLB.text = _plan.content;
+        _timeLB.text =@"00:00";
+        if(_disableCell){
+            _disableCell(cellTypeExistNone);
+        }
 
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-- (void)dealloc
-{
-      [self removeNSNotificationCenter];
+    }
+    }
+    
 }
 
 
@@ -163,6 +217,48 @@
 
     NSDate* nowdate = [NSDate date];
     NSInteger now = [nowdate minuteTime];
+    
+//
+//    if(((m_date*)_m_date).isDone){
+//        
+//        _mask.backgroundColor = [UIColor colorWithRed:0.000 green:1.000 blue:0.000 alpha:0.298];
+//        if(_disableCell){
+//            _disableCell(cellTypeExistNone);
+//        }
+//        return ;
+//    }
+    
+    //表示已经在限时内完成
+    if(_plan.remain!=0){
+       
+        NSDate *time = [NSDate dateWithYear:0 month:0 day:0 hour:0 minute:_plan.remain second:0];
+        _timeLB.text =[time currentTimeStringHM];
+       
+        [self setIcon:@"done"];
+        if(_disableCell){
+            _disableCell(cellTypeExistNone);
+        }
+        [_mask setFrame:CGRectMake(0, 0, screenwith*_plan.ration, _height-.5)];
+        _mask.backgroundColor = [UIColor colorWithRed:0.000 green:1.000 blue:0.000 alpha:0.298];
+      
+        return;
+    }
+    
+    if(_plan.isPassed){
+        NSLog(@"过去日期");
+        
+        
+        _mask.frame = CGRectMake(0, 0, screenwith, _height-0.5);
+        _mask.backgroundColor = [UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:0.305];
+        [self setIcon:@"overtime"];
+        
+        _timeLB.text =@"00:00";
+        
+        if(_disableCell){
+            _disableCell(cellTypeExistNone);
+        }
+        return;
+    }
     //当前时间还未到任务开始时间
     if(now < da.startTime){
         NSLog(@"还未开始");
@@ -170,69 +266,78 @@
         _mask.frame = CGRectMake(0, 0, screenwith, _height-0.5);
         _mask.backgroundColor = [UIColor colorWithRed:0.961 green:0.965 blue:0.870 alpha:1.000];
 
-        [_icon setImage:[UIImage imageNamed:@"before_start"]];
-        [_icon zxp_addConstraints:^(ZXPAutoLayoutMaker *layout) {
-            layout.leftSpace(screenwith/3).topSpaceEqualTo(_timeLB,-2);
-        }];
-        
+        [self setIcon:@"before_start"];
         _timeLB.text =[[NSDate dateWithYear:0 month:0 day:0 hour:0 minute:(da.endTime - da.startTime) second:0] currentTimeStringHM];
         _timeLB.textColor = [UIColor grayColor];
 
+        if(_disableCell){
+            _disableCell(cellTypeExistDelete);
+        }
         
-    }else if(now > da.endTime) {
+    }else if(now >= da.endTime) {
         //当任务超时
-        NSLog(@"超时");
+        NSLog(@"as");
         _mask.frame = CGRectMake(0, 0, screenwith, _height-0.5);
         _mask.backgroundColor = [UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:0.305];
+        [self setIcon:@"overtime"];
 
-        [_icon setImage:[UIImage imageNamed:@"overtime"]];
-        [_icon zxp_addConstraints:^(ZXPAutoLayoutMaker *layout) {
-            layout.leftSpace(screenwith/3).topSpaceEqualTo(_timeLB,-2);
-        }];
+        //删除通知
+        [LocalNotificationsManager removeLocalNotificationWithActivityId:_plan.planName];
+        
           _timeLB.text =@"00:00";
         
         if(_disableCell){
-            _disableCell();
+            _disableCell(cellTypeExistNone);
         }
         
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_TIME_CELL object:nil];
+      //  [self removeNSNotificationCenter];
 
         
     }else {
+        
+        if(_disableCell){
+            _disableCell(cellTypeExistAll);
+        }
+        _icon.hidden = YES;
+        
+        
+        
+        
         double cop = now - da.startTime;
         double total = da.endTime - da.startTime;
         _ration = cop/(double)total;
         
         NSLog(@"开始计时...");
 
-        _icon = nil;
         _timeLB.textColor = [UIColor redColor];
         _mask.backgroundColor = [UIColor colorWithRed:0.000 green:1.000 blue:0.000 alpha:0.298];
         
-        if(_ration >(3/4.0) && _ration< (7/8.0)){
+        if(_ration >(1/2.0) && _ration< (2/3.0)){
             _mask.backgroundColor = [UIColor colorWithRed:1.000 green:0.500 blue:0.000 alpha:0.300];
         
-        }else if(_ration>=7/8.0){
+        }else if(_ration>=2/3.0){
             _mask.backgroundColor = [UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:0.305];
-        }else if(_ration == 1.0){
-            
-            [_icon setImage:[UIImage imageNamed:@"overtime"]];
-            [_icon zxp_addConstraints:^(ZXPAutoLayoutMaker *layout) {
-                layout.leftSpace(screenwith/3).topSpaceEqualTo(_timeLB,-2);
-            }];
-            if(_disableCell){
-                _disableCell();
-            }
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_TIME_CELL object:nil];
         }
+//        else if(_ration == 1.0){
+//            
+//            
+//            [self setIcon:@"overtime"];
+//
+//            if(_disableCell){
+//                _disableCell(cellTypeExistNone);
+//            }
+//            [self removeNSNotificationCenter];
+//        }
         
         //[UIView animateWithDuration:1 animations:^{
-            _mask.frame = CGRectMake(0, 0, screenwith*cop/total, _height-0.5);
+            _mask.frame = CGRectMake(0, 0, screenwith*_ration, _height-0.5);
        // }];
         _timeLB.text  = [[NSDate dateWithYear:0 month:0 day:0 hour:0 minute:da.m_countNum second:0] currentTimeStringHM];
         
 
     }
+    
+    
   
 }
 
@@ -251,6 +356,20 @@
                                                object:nil];
 }
 
+//-(void)wellDone{
+//    
+//    [self setIcon:@"done"];
+//    [_mask setFrame:CGRectMake(0, 0, screenwith*_ration, _height-.5)];
+//    _mask.backgroundColor = [UIColor colorWithRed:0.000 green:1.000 blue:0.000 alpha:0.298];
+//
+//    ((m_date*)self.m_date).isDone = YES;
+//    
+//    if(_disableCell){
+//        _disableCell(cellTypeExistNone);
+//    }
+//    
+//}
+
 - (void)removeNSNotificationCenter {
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_TIME_CELL object:nil];
@@ -264,5 +383,32 @@
 }
 
 
+#pragma  mark - 设定图标
+-(void)setIcon:(NSString*)iconUrl{
+//    
+//    UIImageView *icon = [UIImageView new];
+//    [icon setImage:[UIImage imageNamed:iconUrl]];
+//    [self.contentView addSubview:icon];
+//    [icon zxp_addConstraints:^(ZXPAutoLayoutMaker *layout) {
+//       
+//        layout.bottomSpace(10).rightSpace(10);
+//    }];
+    [_icon setImage:[UIImage imageNamed:iconUrl]];
+    _icon.hidden = NO;
+    
+}
+
+
+
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    
+    
+}
+- (void)dealloc
+{
+    [self removeNSNotificationCenter];
+}
 
 @end

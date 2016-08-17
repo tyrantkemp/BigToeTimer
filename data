@@ -1,0 +1,68 @@
+{
+"data": [{
+"data": {
+"createTime": 1466240761000,
+"id": 3,
+"level": 0,
+"parentId": 0,
+"typeName": "周",
+"updateTime": 1466241216000
+},
+"list": [{
+"createTime": 1466242093000,
+"id": "week_3",
+"level": 2,
+"parentId": 3,
+"typeName": "三周",
+"updateTime": 1467679296000
+}, {
+"createTime": 1466242083000,
+"id": "week_6",
+"level": 2,
+"parentId": 3,
+"typeName": "六周",
+"updateTime": 1467679295000
+},
+{
+"createTime": 1466242083000,
+"id": "week_12",
+"level": 2,
+"parentId": 3,
+"typeName": "十二周",
+"updateTime": 1467679295000
+}]
+}, {
+"data": {
+"createTime": 1466240758000,
+"id": 2,
+"level": 0,
+"parentId": 0,
+"typeName": "月",
+"updateTime": 1466241215000
+},
+"list": [{
+"createTime": 1466242054000,
+"id": "month_3",
+"level": 2,
+"parentId": 2,
+"typeName": "三月",
+"updateTime": 1466242056000
+}, {
+"createTime": 1466242042000,
+"id": "month_6",
+"level": 2,
+"parentId": 2,
+"typeName": "六月",
+"updateTime": 1466242042000
+}, {
+"createTime": 1466241997000,
+"id": "month_12",
+"level": 2,
+"parentId": 2,
+"typeName": "十二月",
+"updateTime": 1466241997000
+}]
+}],
+"isSuccess": true,
+"message": "获取课程成功！"
+}

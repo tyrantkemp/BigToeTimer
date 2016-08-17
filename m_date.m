@@ -13,7 +13,7 @@
     m_date *model = [self new];
     
     NSDate* now = [NSDate date];
-    
+    model.isDone = NO;
     model.startTime = time;
     model.m_countNum = endTime -[now minuteTime];
     model.endTime = endTime;

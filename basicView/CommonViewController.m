@@ -244,19 +244,15 @@
             if (self.tableView.mj_header.isRefreshing) {
                 [self.tableView.mj_header endRefreshing];
             }
-            NSLog(@"dadadad");
+            
             [self.tableView reloadData];
         });
         
         
     } failure:^(NSError *error) {
         
-        MBProgressHUD *HUD = [Utils createHUD];
-        HUD.mode = MBProgressHUDModeCustomView;
-        HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
-        HUD.detailsLabelText = [NSString stringWithFormat:@"%@", error.userInfo[NSLocalizedDescriptionKey]];
-        
-        [HUD hide:YES afterDelay:1];
+  
+        [Utils showHUDWithError:error];
         
         _lastCell.status = LastCellStatusError;
         if (self.tableView.mj_header.isRefreshing) {

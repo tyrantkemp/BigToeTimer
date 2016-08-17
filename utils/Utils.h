@@ -47,12 +47,15 @@ typedef NS_ENUM(NSUInteger, hudType) {
 
 + (CGFloat)valueBetweenMin:(CGFloat)min andMax:(CGFloat)max percent:(CGFloat)percent;
 
-+ (MBProgressHUD *)createHUD;
-+ (MBProgressHUD *)createHUDWithText:(NSString*)text;
-+ (MBProgressHUD *)createHUDWithText:(NSString*)text delayTime:(NSTimeInterval)delay;
-+ (MBProgressHUD *)createHUDErrorWithError:(NSError*)error;
-+ (MBProgressHUD *)createHUDErrorWithErrorMessage:(NSString*)message delay:(NSTimeInterval)delay;
-+ (MBProgressHUD *)createHUDWithSuccess:(NSString*)message delay:(NSTimeInterval)delay;
+#pragma mark - HUD
++(void)showHUD:(NSString *)hint;
++(void)showHUDWithError:(NSError*)error;
++(void)showHUDWithMsg:(NSString*)Msg andImage:(UIImage*)image;
+
++(void)hideHud;
++(void)showHudInView:(UIView *)view hint:(NSString *)hint;
++(void)showHudInView:(UIView *)view hint:(NSString *)hint yOffset:(float)yOffset;
++(void)showHUDWithErrorMsg:(NSString*)errorMsg;
 
 + (UIImage *)createQRCodeFromString:(NSString *)string;
 + (NSAttributedString *)attributedTimeString:(NSDate *)date;

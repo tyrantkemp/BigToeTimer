@@ -13,6 +13,10 @@
 @property(nonatomic,strong)NSString* planName;
 @property(nonatomic,strong)NSString* content;
 @property(nonatomic,assign)NSInteger startTime;
+@property(nonatomic,strong)NSString* createTime;
 @property(nonatomic,assign)NSInteger endTime;
 @property(nonatomic,assign)NSInteger plantype;
+@property(nonatomic,assign)double ration;
+@property(nonatomic,assign)NSInteger remain;
+@property(nonatomic,assign)BOOL isPassed;
 @end

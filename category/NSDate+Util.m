@@ -52,6 +52,23 @@ static NSString * const kKeyMinutes = @"minutes";
 }
 
 
+-(NSString*)currentTimeStringYMD{
+    
+    return  [NSString stringWithFormat:@"%d年%d月%d日",[self year],[self month],[self day]];
+    
+}
+-(NSString*)currentTimeStringMD{
+    
+    return  [NSString stringWithFormat:@"%d月%d日",[self month],[self day]];
+    
+}
+
+-(NSString*)currentTimeStringYM{
+    
+    return  [NSString stringWithFormat:@"%d年%d月",[self year],[self month]];
+    
+}
+
 -(NSInteger)secondTime{
     
     return  [self hour]*60*60+[self minute]*60+[self second];
@@ -59,7 +76,12 @@ static NSString * const kKeyMinutes = @"minutes";
     
 }
 -(NSInteger)minuteTime{
-    return  [self hour]*60+[self minute];
+    if([self second]>0){
+        return  [self hour]*60+[self minute]+1;
+
+    }else {
+        return  [self hour]*60+[self minute];
+    }
 }
 
 
@@ -82,4 +104,6 @@ static NSString * const kKeyMinutes = @"minutes";
         return  [NSDate dateWithYear:0 month:0 day:0 hour:0 minute:0 second:sub];
     }
 }
+
+
 @end

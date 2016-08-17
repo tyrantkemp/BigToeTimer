@@ -41,7 +41,7 @@
     NSTimer* _timer;
     NSInteger _totaltime;
     
-    MBProgressHUD* _hud;
+    
 }
 
 @end
@@ -141,6 +141,9 @@
     _mailTF.borderStyle = UITextBorderStyleRoundedRect;
     [_mailTF setClearsOnBeginEditing:YES];
     [_mailTF setFont:[UIFont systemFontOfSize:15]];
+    [_mailTF setAutocorrectionType:UITextAutocorrectionTypeNo];
+    
+    [_mailTF setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [_mailview addSubview:_mailTF];
     
     //用户名
@@ -150,12 +153,18 @@
     [_mailaccountTF setClearsOnBeginEditing:YES];
     _mailaccountTF.delegate =self;
     [_mailaccountTF setFont:[UIFont systemFontOfSize:15]];
+    [_mailaccountTF setAutocorrectionType:UITextAutocorrectionTypeNo];
+    
+    [_mailaccountTF setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [_mailview addSubview:_mailaccountTF];
     
     //密码
     _mailpwdTF = [UITextField new];
     [_mailpwdTF setPlaceholder:@"请输入密码"];
     _mailpwdTF.borderStyle = UITextBorderStyleRoundedRect;
+    [_mailpwdTF setAutocorrectionType:UITextAutocorrectionTypeNo];
+    
+    [_mailpwdTF setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [_mailpwdTF setSecureTextEntry:YES];
     _mailpwdTF.delegate =self;
     [_mailpwdTF setFont:[UIFont systemFontOfSize:15]];
@@ -382,6 +391,7 @@
     if([_mailTF.text isNullOrEmpty] || [_mailaccountTF.text isNullOrEmpty]|| [_mailpwdTF.text isNullOrEmpty]){
         UIAlertView* alert = [UIAlertView bk_showAlertViewWithTitle:@"错误" message:@"必填项不能为空" cancelButtonTitle:@"OK" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
         }];
+        
         alert.delegate =self;
         [alert show];
         return;
@@ -402,33 +412,27 @@
         return;
     }
     
-    _hud = [Utils createHUD];
-    _hud.labelText = @"正在注册";
-    
-    [_hud show:YES];
-    _hud.userInteractionEnabled = NO;
-    
-    NSLog(@"login url:%@",[NSString stringWithFormat:@"%@%@%@",MAIN,AUTH,APP_LOGIN]);
+
+    [Utils showHudInView:self.view hint:@"正在注册"];
     
     
-    [[XZHttp sharedInstance ] postWithURLString:[NSString stringWithFormat:@"%@%@%@",MAIN,AUTH,APP_REGISTER] parameters:@{@"username":username, @"password":password,@"email":mail} success:^(id responseObject) {
-        
+    
+    
+    [[XZHttp sharedInstance ] postWithURLString:[NSString stringWithFormat:@"%@%@%@",MAIN,AUTH,APP_REGISTER] parameters:@{@"userName":username, @"password":password,@"email":mail} success:^(id responseObject) {
+        [Utils hideHud];
         NSDictionary* data = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
         NSInteger isSuccess = [(NSString*)data[@"isSuccess"] integerValue];
         // 注册失败 isSuccess == 0
         if(isSuccess != 1){
             NSString* errMeesage = data[@"message"];
-            _hud.detailsLabelFont = [UIFont boldSystemFontOfSize:16];
-            _hud.mode = MBProgressHUDModeCustomView;
-            _hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
-            _hud.labelText = errMeesage;
-            [_hud hide:YES afterDelay:2];
+         
+            [Utils showHUDWithErrorMsg:errMeesage];
+
             return;
         }
-        _hud.mode = MBProgressHUDModeText;
-        _hud.labelText = @"注册成功";
-        [_hud hide:YES afterDelay:2];
-        _hud.userInteractionEnabled = NO;
+
+        
+        [Utils showHUD:@"注册成功"];
         //登陆成功后返回上一页
         dispatch_after (dispatch_time (DISPATCH_TIME_NOW, (int64_t )(2 * NSEC_PER_SEC )), dispatch_get_main_queue (), ^{
             [self.navigationController popViewControllerAnimated:NO];
@@ -436,18 +440,20 @@
             
         });
         //获取并保存个人资料
-        //NSDictionary* user = data[@"user"];
-        // [self renewUser:user];
+        NSDictionary* user = data[@"data"];
+        userMJ*  usermj = [userMJ mj_objectWithKeyValues:user];
+        [self renewUser:usermj];
     } failure:^(NSError *error) {
-        [Utils createHUDErrorWithError:error];
+        [Utils showHUDWithError:error];
         
     }];
     
 }
 #pragma mark - 跟新本地用户信息
--(void)renewUser:(NSDictionary*) userdict{
+-(void)renewUser:(userMJ*) user{
     //userDefault 保存 登陆用户信息
     [self saveCookies];
+    [Config saveProfile:user];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"userRefresh" object:@(YES)];
     
 }

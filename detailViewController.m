@@ -9,12 +9,14 @@
 #import "detailViewController.h"
 #import "planMJ.h"
 #import "MBProgressHUD.h"
+#import "LocalNotificationsManager.h"
 
 
 @interface detailViewController ()<UITextViewDelegate,UIGestureRecognizerDelegate>{
     UIButton* _quitBtn;
     UIButton* _saveBtn;
     UITextView* _contentTV;
+   // UIView * _contentBackView;
     UILabel* _placehoder;
     
     UIButton* _starttimeBtn;
@@ -31,7 +33,7 @@
     UILabel* _title;
     BOOL _isStart; //判断点击按钮类型 默认为开始按钮
 }
-@property (nonatomic, strong) MBProgressHUD *hud;
+
 
 
 @end
@@ -41,6 +43,7 @@
     self = [super init];
     if(self){
         _isStart = YES;
+        _editType = 0;
         _plantype = PlanTypeLimited;
         
     }
@@ -56,12 +59,18 @@
 
     [self plantypeConfig];
     
+    [self canBeEditConfig];
+    
     //添加手势，点击屏幕其他区域关闭键盘的操作
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hidenKeyboard)];
     gesture.numberOfTapsRequired = 1;
     gesture.delegate = self;
     [self.view addGestureRecognizer:gesture];
     // Do any additional setup after loading the view.
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
 }
 -(void)inisubviews{
    
@@ -85,13 +94,18 @@
 //    _title.textColor = [UIColor lightGrayColor];
 //    _title.text =@"限时";
 //    [self.view addSubview:_title];
+
     
     //任务内容
     _contentTV = [UITextView new];
-    _contentTV.font = [UIFont systemFontOfSize:16];
-    _contentTV.textColor= [UIColor blackColor];
+    _contentTV.font = [UIFont systemFontOfSize:18];
+    _contentTV.textColor= [UIColor grayColor];
     _contentTV.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _contentTV.delegate = self;
+//    _contentTV.transform = CGAffineTransformMakeRotation(.05);
+    
+    [_contentTV setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [_contentTV setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     _contentTV.backgroundColor = [UIColor colorWithRed:0.910 green:0.914 blue:0.635 alpha:1.000];
     [self.view addSubview:_contentTV];
     
@@ -162,7 +176,7 @@
     }];
     
     [_placehoder zxp_addConstraints:^(ZXPAutoLayoutMaker *layout) {
-        layout.leftSpace(2).topSpace(4);
+        layout.leftSpace(5).topSpace(8);
     }];
     
     [_starttimeBtn zxp_addConstraints:^(ZXPAutoLayoutMaker *layout) {
@@ -204,6 +218,38 @@
         _endtimeBtn.enabled = NO;
     }
 }
+#pragma mark - 是否可编辑
+-(void)canBeEditConfig{
+    if(_plan){
+        _starttimeBtn.enabled = NO;
+        NSDate* startdate = [NSDate dateWithYear:0 month:0 day:0 hour:0 minute:_plan.startTime second:0];
+        [_starttimeBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [_starttimeBtn setTitle:[startdate currentTimeStringHM] forState:UIControlStateNormal];
+        
+        _endtimeBtn.enabled = NO;
+        [_endtimeBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        NSDate* enddate = [NSDate dateWithYear:0 month:0 day:0 hour:0 minute:_plan.endTime second:0];
+        [_endtimeBtn setTitle:[enddate currentTimeStringHM] forState:UIControlStateNormal];
+        
+        _starttimeDate = startdate;
+        _endtimeDate = enddate;
+        
+        if(_editType == 2){
+           _placehoder.text=@"";
+           _contentTV.text = _plan.content;
+           _contentTV.editable = NO;
+        
+            _saveBtn.enabled=NO;
+        }else if(_editType == 1){
+            _placehoder.text=@"";
+            _contentTV.text = _plan.content;
+            
+            
+            
+        }
+    }
+    
+}
 -(void)textViewDidChange:(UITextView *)textView
 {
     NSString* content =  textView.text;
@@ -226,27 +272,33 @@
 -(void)save:(UIButton*)sender{
     NSLog(@"计划保存");
     NSString* content = [_contentTV.text StringWithoutEmpty];
-    
     if(![content isNullOrEmpty] && _starttimeDate!=nil && _endtimeDate!=nil){
-        
-
-        _hud = [Utils createHUD];
-        _hud.labelText= @"保存中...";
-        _hud.userInteractionEnabled = NO;
-        [_hud show:YES];
-        
-        planMJ* plan = [planMJ new];
-        plan.content = content;
-        plan.startTime = [_starttimeDate minuteTime];
-        plan.endTime = [_endtimeDate minuteTime];
-        plan.plantype = _plantype;
-
-        NSDate * now = [NSDate date];
-        plan.planName = [NSString stringWithFormat:@"%lld_%d_%d_%d_%d_%d_%d",[Config getOwnID],[now year],[now month],[now day],[now hour],[now minute],[now second]];
-       
         NSString* url = [NSString stringWithFormat:@"%@%@%@",MAIN,LIST,PLAN_CREATE];
+
+      
+        [Utils showHudInView:self.view hint:@"保存中..."];
+        if(_plan){
+            _plan.content = _contentTV.text;
+            [self update:url data:_plan];
+            
+        }else {
+            planMJ* plan = [planMJ new];
+            plan.content = content;
+            plan.startTime = [_starttimeDate minuteTime];
+            plan.endTime = [_endtimeDate minuteTime];
+            plan.plantype = _plantype;
+            
+            NSDate * now = [NSDate date];
+            plan.planName = [NSString stringWithFormat:@"%lld_%d_%d_%d_%d_%d_%d",[Config getOwnID],[now year],[now month],[now day],[now hour],[now minute],[now second]];
+            
+            
+            [self save:url data:plan];
+        }
         
-        [self saveOrUpdatePlan:url data:plan];
+        
+        
+        
+        
 
         
     }else if([content isNullOrEmpty]){
@@ -265,39 +317,74 @@
     
 }
 
-#pragma mark - 上传plan 新建或更改
--(void)saveOrUpdatePlan:(NSString*)url data:(planMJ*)plan{
+#pragma mark - 上传plan 新建
+-(void)save:(NSString*)url data:(planMJ*)plan{
     NSLog(@"创建任务url:%@",url);
+   
     //成功 退出页面
     [self dismissViewControllerAnimated:YES completion:^{
         
         [[NSNotificationCenter defaultCenter]postNotificationName:PLAN_NEW object:plan];
         
     }];
-    
     NSDictionary* dict = @{@"content":plan.content,@"startTime":[NSString stringWithFormat:@"%d",plan.startTime],@"endTime":[NSString stringWithFormat:@"%d",plan.endTime],@"planType":[NSString stringWithFormat:@"%d",plan.plantype],@"userId":[NSString stringWithFormat:@"%lld",[Config getOwnID]],@"planName":plan.planName};
     
     [[XZHttp sharedInstance]postWithURLString:url parameters:dict success:^(id responseObject) {
         NSDictionary* data = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        [Utils hideHud];
         NSInteger isSuccess = [(NSString*)data[@"isSuccess"] integerValue];
         // 登陆失败 isSuccess == 0
         if(isSuccess != 1){
             NSString* errMeesage = data[@"message"];
-            _hud.detailsLabelFont = [UIFont boldSystemFontOfSize:16];
-            _hud.mode = MBProgressHUDModeCustomView;
-            _hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
-            _hud.labelText = errMeesage;
-            [_hud hide:YES afterDelay:1];
+           
+            [Utils showHUDWithErrorMsg:errMeesage];
             return;
         }else {
             
-            [_hud hide:YES];
             
         }
         
         
     } failure:^(NSError *error) {
-        [Utils createHUDErrorWithError:error];
+        [Utils showHUDWithError:error];
+        
+    }];
+    
+    
+}
+#pragma mark - 上传plan 编辑保存
+-(void)update:(NSString*)url data:(planMJ*)plan{
+    NSLog(@"保存任务url:%@",url);
+    //成功 退出页面
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:PLAN_EDIT object:nil];
+        
+    }];
+    NSDictionary* dict = @{@"planId":[NSString stringWithFormat:@"%ld",(long)plan.planId],@"content":plan.content,@"startTime":[NSString stringWithFormat:@"%d",plan.startTime],@"endTime":[NSString stringWithFormat:@"%d",plan.endTime],@"planType":[NSString stringWithFormat:@"%d",plan.plantype],@"userId":[NSString stringWithFormat:@"%lld",[Config getOwnID]],@"planName":plan.planName};
+    
+    [[XZHttp sharedInstance]postWithURLString:url parameters:dict success:^(id responseObject) {
+        [Utils hideHud];
+        
+        NSDictionary* data = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        NSInteger isSuccess = [(NSString*)data[@"isSuccess"] integerValue];
+        // 登陆失败 isSuccess == 0
+        if(isSuccess != 1){
+            NSString* errMeesage = data[@"message"];
+        
+            [Utils showHUDWithErrorMsg:errMeesage];
+            return;
+        }else {
+           
+            
+            
+            
+            
+        }
+        
+        
+    } failure:^(NSError *error) {
+        [Utils showHUDWithError:error];
         
     }];
     
@@ -307,7 +394,9 @@
 #pragma mark - 开始时间
 -(void)starttime:(UIButton *) sender{
     [self pickershow];
+    [_contentTV resignFirstResponder];
     _starttimeDate = [NSDate date];
+    
     [_starttimeBtn setTitle:[_starttimeDate currentTimeStringHM] forState:UIControlStateNormal];
     _isStart = YES;
 }
@@ -315,6 +404,7 @@
 #pragma  mark - 结束时间
 -(void)endtime:(UIButton*)sender{
     [self pickershow];
+    [_contentTV resignFirstResponder];
 
     _isStart = NO;
     

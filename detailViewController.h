@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "planMJ.h"
 
 typedef NS_ENUM(NSUInteger,PlanType){
     
@@ -17,4 +17,6 @@ typedef NS_ENUM(NSUInteger,PlanType){
 
 @interface detailViewController : UIViewController
 @property(nonatomic,assign )PlanType plantype;
+@property(nonatomic,strong)planMJ* plan;
+@property(nonatomic,assign)NSInteger editType; //0:正常 1:内容可编辑，可保存 2:全都不能编辑
 @end

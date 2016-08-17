@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		6456408996C9C1F3074251FB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579A6E15FC0CE81AC3C176B2 /* libPods.a */; };
+		AF00E6FD1D3E65D000A219F2 /* DoneListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF00E6FC1D3E65D000A219F2 /* DoneListTableViewController.m */; };
+		AF00E7001D3FAE6D00A219F2 /* NSDate+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = AF00E6FF1D3FAE6D00A219F2 /* NSDate+Format.m */; };
+		AF00E7021D404DE500A219F2 /* tingyunApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF00E7011D404DE500A219F2 /* tingyunApp.framework */; };
+		AF00E7041D404E1100A219F2 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF00E7031D404E1100A219F2 /* CoreTelephony.framework */; };
+		AF00E7061D404E1B00A219F2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF00E7051D404E1B00A219F2 /* Security.framework */; };
+		AF00E7081D404E2400A219F2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF00E7071D404E2400A219F2 /* SystemConfiguration.framework */; };
+		AF00E70A1D404E2E00A219F2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AF00E7091D404E2E00A219F2 /* libz.tbd */; };
+		AF00E70F1D40546B00A219F2 /* emailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF00E70E1D40546B00A219F2 /* emailViewController.m */; };
+		AF00E7121D40547A00A219F2 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF00E7111D40547A00A219F2 /* AboutViewController.m */; };
 		AF3CBC2F1D333AB000B1FAC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBC2E1D333AB000B1FAC6 /* main.m */; };
 		AF3CBC321D333AB000B1FAC6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBC311D333AB000B1FAC6 /* AppDelegate.m */; };
 		AF3CBC3B1D333AB000B1FAC6 /* BigToeTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBC391D333AB000B1FAC6 /* BigToeTimer.xcdatamodeld */; };
@@ -54,6 +63,18 @@
 		AF3CBD2E1D35571F00B1FAC6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3CBD2D1D35571F00B1FAC6 /* AVFoundation.framework */; };
 		AF3CBD311D35C41C00B1FAC6 /* detailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBD301D35C41C00B1FAC6 /* detailViewController.m */; };
 		AF3CBD341D37741B00B1FAC6 /* r_plan.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBD331D37741B00B1FAC6 /* r_plan.m */; };
+		AF3CBD381D3CB19700B1FAC6 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBD371D3CB19700B1FAC6 /* SideMenuViewController.m */; };
+		AF3CBD3C1D3CC79600B1FAC6 /* AnalysisTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBD3B1D3CC79600B1FAC6 /* AnalysisTableViewController.m */; };
+		AF3CBD3F1D3CD07E00B1FAC6 /* AnalyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBD3E1D3CD07E00B1FAC6 /* AnalyTableViewCell.m */; };
+		AF3CBD461D3CD89B00B1FAC6 /* DoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBD451D3CD89B00B1FAC6 /* DoneViewController.m */; };
+		AF3CBD481D3CD9CB00B1FAC6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3CBD471D3CD9CB00B1FAC6 /* Foundation.framework */; };
+		AF3CBD4A1D3CD9E700B1FAC6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3CBD491D3CD9E700B1FAC6 /* UIKit.framework */; };
+		AF3CBD4C1D3CD9F400B1FAC6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3CBD4B1D3CD9F400B1FAC6 /* CoreGraphics.framework */; };
+		AF3CBD4E1D3CDA0400B1FAC6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3CBD4D1D3CDA0400B1FAC6 /* QuartzCore.framework */; };
+		AF3CBD521D3DA85700B1FAC6 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBD511D3DA85700B1FAC6 /* ChartViewController.m */; };
+		AF3CBD561D3DB85D00B1FAC6 /* MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBD551D3DB85D00B1FAC6 /* MenuView.m */; };
+		AF3CBD581D3DBA8800B1FAC6 /* data in Resources */ = {isa = PBXBuildFile; fileRef = AF3CBD571D3DBA8800B1FAC6 /* data */; };
+		AF3CBD5B1D3E2C7E00B1FAC6 /* LocalNotificationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBD5A1D3E2C7E00B1FAC6 /* LocalNotificationsManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +98,19 @@
 		4214051AC075E4B6A500E43E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		579A6E15FC0CE81AC3C176B2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		926C71FBA4D484B45151CC27 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		AF00E6FB1D3E65D000A219F2 /* DoneListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoneListTableViewController.h; sourceTree = "<group>"; };
+		AF00E6FC1D3E65D000A219F2 /* DoneListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoneListTableViewController.m; sourceTree = "<group>"; };
+		AF00E6FE1D3FAE6D00A219F2 /* NSDate+Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Format.h"; sourceTree = "<group>"; };
+		AF00E6FF1D3FAE6D00A219F2 /* NSDate+Format.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Format.m"; sourceTree = "<group>"; };
+		AF00E7011D404DE500A219F2 /* tingyunApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = tingyunApp.framework; sourceTree = "<group>"; };
+		AF00E7031D404E1100A219F2 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		AF00E7051D404E1B00A219F2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		AF00E7071D404E2400A219F2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AF00E7091D404E2E00A219F2 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		AF00E70D1D40546B00A219F2 /* emailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = emailViewController.h; sourceTree = "<group>"; };
+		AF00E70E1D40546B00A219F2 /* emailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = emailViewController.m; sourceTree = "<group>"; };
+		AF00E7101D40547A00A219F2 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		AF00E7111D40547A00A219F2 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		AF3CBC2A1D333AB000B1FAC6 /* BigToeTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BigToeTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF3CBC2E1D333AB000B1FAC6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AF3CBC301D333AB000B1FAC6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = BigToeTimer/AppDelegate.h; sourceTree = "<group>"; };
@@ -166,6 +200,25 @@
 		AF3CBD301D35C41C00B1FAC6 /* detailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = detailViewController.m; sourceTree = "<group>"; };
 		AF3CBD321D37741B00B1FAC6 /* r_plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = r_plan.h; sourceTree = "<group>"; };
 		AF3CBD331D37741B00B1FAC6 /* r_plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = r_plan.m; sourceTree = "<group>"; };
+		AF3CBD361D3CB19700B1FAC6 /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuViewController.h; sourceTree = "<group>"; };
+		AF3CBD371D3CB19700B1FAC6 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuViewController.m; sourceTree = "<group>"; };
+		AF3CBD3A1D3CC79600B1FAC6 /* AnalysisTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalysisTableViewController.h; sourceTree = "<group>"; };
+		AF3CBD3B1D3CC79600B1FAC6 /* AnalysisTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalysisTableViewController.m; sourceTree = "<group>"; };
+		AF3CBD3D1D3CD07E00B1FAC6 /* AnalyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyTableViewCell.h; sourceTree = "<group>"; };
+		AF3CBD3E1D3CD07E00B1FAC6 /* AnalyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyTableViewCell.m; sourceTree = "<group>"; };
+		AF3CBD441D3CD89B00B1FAC6 /* DoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoneViewController.h; sourceTree = "<group>"; };
+		AF3CBD451D3CD89B00B1FAC6 /* DoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoneViewController.m; sourceTree = "<group>"; };
+		AF3CBD471D3CD9CB00B1FAC6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AF3CBD491D3CD9E700B1FAC6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		AF3CBD4B1D3CD9F400B1FAC6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AF3CBD4D1D3CDA0400B1FAC6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AF3CBD501D3DA85700B1FAC6 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartViewController.h; sourceTree = "<group>"; };
+		AF3CBD511D3DA85700B1FAC6 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartViewController.m; sourceTree = "<group>"; };
+		AF3CBD541D3DB85D00B1FAC6 /* MenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuView.h; sourceTree = "<group>"; };
+		AF3CBD551D3DB85D00B1FAC6 /* MenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuView.m; sourceTree = "<group>"; };
+		AF3CBD571D3DBA8800B1FAC6 /* data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data; sourceTree = "<group>"; };
+		AF3CBD591D3E2C7E00B1FAC6 /* LocalNotificationsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotificationsManager.h; sourceTree = "<group>"; };
+		AF3CBD5A1D3E2C7E00B1FAC6 /* LocalNotificationsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotificationsManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,9 +226,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF00E70A1D404E2E00A219F2 /* libz.tbd in Frameworks */,
+				AF00E7081D404E2400A219F2 /* SystemConfiguration.framework in Frameworks */,
+				AF00E7061D404E1B00A219F2 /* Security.framework in Frameworks */,
+				AF00E7041D404E1100A219F2 /* CoreTelephony.framework in Frameworks */,
+				AF3CBD4E1D3CDA0400B1FAC6 /* QuartzCore.framework in Frameworks */,
+				AF3CBD4C1D3CD9F400B1FAC6 /* CoreGraphics.framework in Frameworks */,
+				AF3CBD4A1D3CD9E700B1FAC6 /* UIKit.framework in Frameworks */,
+				AF3CBD481D3CD9CB00B1FAC6 /* Foundation.framework in Frameworks */,
 				AF3CBD2E1D35571F00B1FAC6 /* AVFoundation.framework in Frameworks */,
 				AF3CBCF91D337DB800B1FAC6 /* CoreFoundation.framework in Frameworks */,
 				6456408996C9C1F3074251FB /* libPods.a in Frameworks */,
+				AF00E7021D404DE500A219F2 /* tingyunApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,11 +261,47 @@
 		464BDCA47AF0DAF9461AB01D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AF00E7091D404E2E00A219F2 /* libz.tbd */,
+				AF00E7071D404E2400A219F2 /* SystemConfiguration.framework */,
+				AF00E7051D404E1B00A219F2 /* Security.framework */,
+				AF00E7031D404E1100A219F2 /* CoreTelephony.framework */,
+				AF00E7011D404DE500A219F2 /* tingyunApp.framework */,
+				AF3CBD4D1D3CDA0400B1FAC6 /* QuartzCore.framework */,
+				AF3CBD4B1D3CD9F400B1FAC6 /* CoreGraphics.framework */,
+				AF3CBD491D3CD9E700B1FAC6 /* UIKit.framework */,
+				AF3CBD471D3CD9CB00B1FAC6 /* Foundation.framework */,
 				AF3CBD2D1D35571F00B1FAC6 /* AVFoundation.framework */,
 				AF3CBCF81D337DB800B1FAC6 /* CoreFoundation.framework */,
 				579A6E15FC0CE81AC3C176B2 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AF00E6FA1D3E65AB00A219F2 /* 完成任务列表 */ = {
+			isa = PBXGroup;
+			children = (
+				AF00E6FB1D3E65D000A219F2 /* DoneListTableViewController.h */,
+				AF00E6FC1D3E65D000A219F2 /* DoneListTableViewController.m */,
+			);
+			name = "完成任务列表";
+			sourceTree = "<group>";
+		};
+		AF00E70B1D40532000A219F2 /* 反馈信息 */ = {
+			isa = PBXGroup;
+			children = (
+				AF00E70D1D40546B00A219F2 /* emailViewController.h */,
+				AF00E70E1D40546B00A219F2 /* emailViewController.m */,
+			);
+			name = "反馈信息";
+			sourceTree = "<group>";
+		};
+		AF00E70C1D40544E00A219F2 /* 关于软件 */ = {
+			isa = PBXGroup;
+			children = (
+				AF00E7101D40547A00A219F2 /* AboutViewController.h */,
+				AF00E7111D40547A00A219F2 /* AboutViewController.m */,
+			);
+			name = "关于软件";
 			sourceTree = "<group>";
 		};
 		AF3CBC211D333AB000B1FAC6 = {
@@ -297,6 +395,8 @@
 				AF3CBCB61D334A6C00B1FAC6 /* UIImageView+Util.m */,
 				AF3CBCB71D334A6C00B1FAC6 /* UIView+Util.h */,
 				AF3CBCB81D334A6C00B1FAC6 /* UIView+Util.m */,
+				AF00E6FE1D3FAE6D00A219F2 /* NSDate+Format.h */,
+				AF00E6FF1D3FAE6D00A219F2 /* NSDate+Format.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -310,6 +410,8 @@
 				AF3CBCC41D334A7C00B1FAC6 /* Utils.m */,
 				AF3CBCC51D334A7C00B1FAC6 /* XZHttp.h */,
 				AF3CBCC61D334A7C00B1FAC6 /* XZHttp.m */,
+				AF3CBD591D3E2C7E00B1FAC6 /* LocalNotificationsManager.h */,
+				AF3CBD5A1D3E2C7E00B1FAC6 /* LocalNotificationsManager.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -325,6 +427,8 @@
 		AF3CBC781D33443900B1FAC6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AF3CBD391D3CC77600B1FAC6 /* 统计 */,
+				AF3CBD351D3CB17C00B1FAC6 /* 侧拉菜单 */,
 				AF3CBC9E1D3348DD00B1FAC6 /* 计划 */,
 				AF3CBC9F1D3348E700B1FAC6 /* 添加计划 */,
 				AF3CBC9D1D3348D700B1FAC6 /* 设置 */,
@@ -486,6 +590,60 @@
 			name = cell;
 			sourceTree = "<group>";
 		};
+		AF3CBD351D3CB17C00B1FAC6 /* 侧拉菜单 */ = {
+			isa = PBXGroup;
+			children = (
+				AF00E70C1D40544E00A219F2 /* 关于软件 */,
+				AF00E70B1D40532000A219F2 /* 反馈信息 */,
+				AF3CBD361D3CB19700B1FAC6 /* SideMenuViewController.h */,
+				AF3CBD371D3CB19700B1FAC6 /* SideMenuViewController.m */,
+			);
+			name = "侧拉菜单";
+			sourceTree = "<group>";
+		};
+		AF3CBD391D3CC77600B1FAC6 /* 统计 */ = {
+			isa = PBXGroup;
+			children = (
+				AF3CBD4F1D3DA83F00B1FAC6 /* 任务曲线统计 */,
+				AF3CBD401D3CD7FE00B1FAC6 /* 任务完成统计 */,
+				AF3CBD3A1D3CC79600B1FAC6 /* AnalysisTableViewController.h */,
+				AF3CBD3B1D3CC79600B1FAC6 /* AnalysisTableViewController.m */,
+				AF3CBD3D1D3CD07E00B1FAC6 /* AnalyTableViewCell.h */,
+				AF3CBD3E1D3CD07E00B1FAC6 /* AnalyTableViewCell.m */,
+			);
+			name = "统计";
+			sourceTree = "<group>";
+		};
+		AF3CBD401D3CD7FE00B1FAC6 /* 任务完成统计 */ = {
+			isa = PBXGroup;
+			children = (
+				AF00E6FA1D3E65AB00A219F2 /* 完成任务列表 */,
+				AF3CBD441D3CD89B00B1FAC6 /* DoneViewController.h */,
+				AF3CBD451D3CD89B00B1FAC6 /* DoneViewController.m */,
+			);
+			name = "任务完成统计";
+			sourceTree = "<group>";
+		};
+		AF3CBD4F1D3DA83F00B1FAC6 /* 任务曲线统计 */ = {
+			isa = PBXGroup;
+			children = (
+				AF3CBD531D3DB84B00B1FAC6 /* 日期选择菜单 */,
+				AF3CBD501D3DA85700B1FAC6 /* ChartViewController.h */,
+				AF3CBD511D3DA85700B1FAC6 /* ChartViewController.m */,
+			);
+			name = "任务曲线统计";
+			sourceTree = "<group>";
+		};
+		AF3CBD531D3DB84B00B1FAC6 /* 日期选择菜单 */ = {
+			isa = PBXGroup;
+			children = (
+				AF3CBD541D3DB85D00B1FAC6 /* MenuView.h */,
+				AF3CBD551D3DB85D00B1FAC6 /* MenuView.m */,
+				AF3CBD571D3DBA8800B1FAC6 /* data */,
+			);
+			name = "日期选择菜单";
+			sourceTree = "<group>";
+		};
 		CAC71292F7A2D5A21E905B3A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -565,7 +723,7 @@
 				TargetAttributes = {
 					AF3CBC291D333AB000B1FAC6 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = U8HBKG4993;
+						DevelopmentTeam = GU4D32EH4Q;
 					};
 					AF3CBC451D333AB000B1FAC6 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -608,6 +766,7 @@
 				AF3CBC401D333AB000B1FAC6 /* LaunchScreen.storyboard in Resources */,
 				AF3CBC3D1D333AB000B1FAC6 /* Assets.xcassets in Resources */,
 				AF3CBCE71D3375DD00B1FAC6 /* Login.storyboard in Resources */,
+				AF3CBD581D3DBA8800B1FAC6 /* data in Resources */,
 				AF3CBCE01D33757F00B1FAC6 /* Settings.Storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -691,6 +850,7 @@
 				AF3CBCBC1D334A6C00B1FAC6 /* NSString+Util.m in Sources */,
 				AF3CBC941D33471800B1FAC6 /* MainContentViewController.m in Sources */,
 				AF3CBCBB1D334A6C00B1FAC6 /* NSString+pinyin.m in Sources */,
+				AF3CBD561D3DB85D00B1FAC6 /* MenuView.m in Sources */,
 				AF3CBCA81D334A6100B1FAC6 /* LastCell.m in Sources */,
 				AF3CBCBE1D334A6C00B1FAC6 /* UIImage+Util.m in Sources */,
 				AF3CBCFC1D33826300B1FAC6 /* ListViewController.m in Sources */,
@@ -700,24 +860,34 @@
 				AF3CBC2F1D333AB000B1FAC6 /* main.m in Sources */,
 				AF3CBCD91D33515200B1FAC6 /* UIImage+FontAwesome.m in Sources */,
 				AF3CBCF41D33778600B1FAC6 /* UIButton+create.m in Sources */,
+				AF00E70F1D40546B00A219F2 /* emailViewController.m in Sources */,
 				AF3CBCBF1D334A6C00B1FAC6 /* UIImageView+Util.m in Sources */,
+				AF3CBD381D3CB19700B1FAC6 /* SideMenuViewController.m in Sources */,
 				AF3CBCDC1D33710600B1FAC6 /* OptionButton.m in Sources */,
 				AF3CBC3B1D333AB000B1FAC6 /* BigToeTimer.xcdatamodeld in Sources */,
 				AF3CBCD71D33515200B1FAC6 /* NSString+FontAwesome.m in Sources */,
+				AF3CBD461D3CD89B00B1FAC6 /* DoneViewController.m in Sources */,
+				AF3CBD5B1D3E2C7E00B1FAC6 /* LocalNotificationsManager.m in Sources */,
 				AF3CBCD81D33515200B1FAC6 /* UIFont+FontAwesome.m in Sources */,
+				AF00E6FD1D3E65D000A219F2 /* DoneListTableViewController.m in Sources */,
 				AF3CBCF71D33784400B1FAC6 /* userMJ.m in Sources */,
 				AF3CBCEB1D3375F400B1FAC6 /* getPwdViewController.m in Sources */,
 				AF3CBC911D3346D100B1FAC6 /* RootViewController.m in Sources */,
 				AF3CBCC91D334A7C00B1FAC6 /* XZHttp.m in Sources */,
 				AF3CBCCC1D3350EB00B1FAC6 /* NSTextAttachment+Util.m in Sources */,
+				AF3CBD521D3DA85700B1FAC6 /* ChartViewController.m in Sources */,
+				AF3CBD3C1D3CC79600B1FAC6 /* AnalysisTableViewController.m in Sources */,
 				AF3CBD191D348BCE00B1FAC6 /* m_date.m in Sources */,
+				AF00E7001D3FAE6D00A219F2 /* NSDate+Format.m in Sources */,
 				AF3CBD341D37741B00B1FAC6 /* r_plan.m in Sources */,
 				AF3CBCD61D33515200B1FAC6 /* FAImageView.m in Sources */,
 				AF3CBCE11D33757F00B1FAC6 /* SettingsViewController.m in Sources */,
+				AF00E7121D40547A00A219F2 /* AboutViewController.m in Sources */,
 				AF3CBCF11D33768200B1FAC6 /* UserInfoViewController.m in Sources */,
 				AF3CBCA71D334A6100B1FAC6 /* CommonViewController.m in Sources */,
 				AF3CBCC81D334A7C00B1FAC6 /* Utils.m in Sources */,
 				AF3CBD311D35C41C00B1FAC6 /* detailViewController.m in Sources */,
+				AF3CBD3F1D3CD07E00B1FAC6 /* AnalyTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -801,7 +971,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -839,8 +1009,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -851,12 +1022,20 @@
 			baseConfigurationReference = 4214051AC075E4B6A500E43E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = BigToeTimer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tyrantkemp.BigToeTimer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tyrantkemp.BigToeTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -865,12 +1044,20 @@
 			baseConfigurationReference = 926C71FBA4D484B45151CC27 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = BigToeTimer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tyrantkemp.BigToeTimer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tyrantkemp.BigToeTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

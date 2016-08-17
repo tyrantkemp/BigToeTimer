@@ -18,8 +18,8 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <GRMustache.h>
 #import <DTCoreText.h>
-
-
+#import <objc/runtime.h>
+static const void* HUDKey = &HUDKey;
 @implementation Utils
 
 
@@ -276,97 +276,87 @@
     return min + (max - min) * percent;
 }
 
-+ (MBProgressHUD *)createHUD
-{
-    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithWindow:window];
-    HUD.detailsLabelFont = [UIFont boldSystemFontOfSize:16];
-    [window addSubview:HUD];
-    [HUD show:YES];
-    HUD.userInteractionEnabled=YES;    //遮盖层效果
-    HUD.removeFromSuperViewOnHide = YES;
-    //[HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
-    
-    return HUD;
-}
-+ (MBProgressHUD *)createHUDWithText:(NSString*)text
-{
-    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithWindow:window];
-    HUD.detailsLabelFont = [UIFont boldSystemFontOfSize:16];
-    HUD.labelText = text;
-    HUD.userInteractionEnabled=YES;
-    [window addSubview:HUD];
-    [HUD show:YES];
-    HUD.removeFromSuperViewOnHide = YES;
-    //[HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
 
-    return HUD;
-}
-+ (MBProgressHUD *)createHUDWithText:(NSString*)text delayTime:(NSTimeInterval)delay
-{
-    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithWindow:window];
-    HUD.detailsLabelFont = [UIFont boldSystemFontOfSize:16];
-    HUD.labelText = text;
-    HUD.userInteractionEnabled=YES;
-    [window addSubview:HUD];
-    [HUD hide:YES afterDelay:delay];
-    HUD.removeFromSuperViewOnHide = YES;
-    //[HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
-    
-    return HUD;
+#pragma mark - HUD 显示 操作
++(MBProgressHUD*)HUD{
+    return objc_getAssociatedObject(self, HUDKey);
 }
 
-+ (MBProgressHUD *)createHUDErrorWithError:(NSError*)error
-{
-    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithWindow:window];
-    HUD.detailsLabelFont = [UIFont boldSystemFontOfSize:16];
-    HUD.mode = MBProgressHUDModeCustomView;
-    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
-
-    HUD.labelText = error.userInfo[NSLocalizedDescriptionKey];;
-    HUD.userInteractionEnabled=YES;
-    [window addSubview:HUD];
-    [HUD hide:YES afterDelay:3];
-    HUD.removeFromSuperViewOnHide = YES;
-    //[HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
-    return HUD;
-}
-+ (MBProgressHUD *)createHUDWithSuccess:(NSString*)message delay:(NSTimeInterval)delay
-{
-    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithWindow:window];
-    HUD.detailsLabelFont = [UIFont boldSystemFontOfSize:16];
-    HUD.mode = MBProgressHUDModeCustomView;
-    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Checkmark"]];
++(void)setHUD:(MBProgressHUD *)HUD{
+    objc_setAssociatedObject(self, HUDKey, HUD, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
-    HUD.labelText = message;
-    HUD.userInteractionEnabled=YES;
-    [window addSubview:HUD];
-   // [HUD hide:YES afterDelay:delay];
-    HUD.removeFromSuperViewOnHide = YES;
-    //[HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
-    return HUD;
-}
-+ (MBProgressHUD *)createHUDErrorWithErrorMessage:(NSString*)message delay:(NSTimeInterval)delay
-{
-    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithWindow:window];
-    HUD.detailsLabelFont = [UIFont boldSystemFontOfSize:16];
-    HUD.mode = MBProgressHUDModeCustomView;
-    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
-    
-    HUD.labelText = message;
-    HUD.userInteractionEnabled=YES;
-    [window addSubview:HUD];
-    [HUD hide:YES afterDelay:delay];
-    HUD.removeFromSuperViewOnHide = YES;
-    //[HUD addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:HUD action:@selector(hide:)]];
-    return HUD;
 }
 
++(void)showHUD:(NSString *)hint{
+    //显示提示信息
+    UIView *view = [[UIApplication sharedApplication].delegate window];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    
+    hud.userInteractionEnabled = NO;
+    hud.mode = MBProgressHUDModeText;
+    hud.label.text = hint;
+    hud.margin = 10.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hideAnimated:YES afterDelay:2];
+}
++(void)showHUDWithError:(NSError*)error{
+    UIView *view = [[UIApplication sharedApplication].delegate window];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    hud.userInteractionEnabled = NO;
+    hud.mode = MBProgressHUDModeCustomView;
+    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+    hud.label.text = error.userInfo[NSLocalizedDescriptionKey];
+    hud.margin = 10.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hideAnimated:YES afterDelay:2];
+}
+
+
++(void)showHUDWithErrorMsg:(NSString*)errorMsg{
+    UIView *view = [[UIApplication sharedApplication].delegate window];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    
+    hud.userInteractionEnabled = NO;
+    hud.mode = MBProgressHUDModeCustomView;
+    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
+    hud.label.text = errorMsg;
+    hud.margin = 10.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hideAnimated:YES afterDelay:2];
+}
+
++(void)showHUDWithMsg:(NSString*)Msg andImage:(UIImage*)image{
+    UIView *view = [[UIApplication sharedApplication].delegate window];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    hud.userInteractionEnabled = NO;
+    hud.mode = MBProgressHUDModeCustomView;
+    hud.customView = [[UIImageView alloc] initWithImage:image];
+    hud.label.text = Msg;
+    hud.margin = 10.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hideAnimated:YES afterDelay:2];
+}
+
++(void)showHudInView:(UIView *)view hint:(NSString *)hint{
+    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:view];
+    HUD.label.text = hint;
+    [view addSubview:HUD];
+    [HUD showAnimated:YES];
+    [self setHUD:HUD];
+}
+
++ (void)showHudInView:(UIView *)view hint:(NSString *)hint yOffset:(float)yOffset{
+    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:view];
+    HUD.label.text = hint;
+    HUD.margin = 10.f;
+    HUD.yOffset += yOffset;
+    [view addSubview:HUD];
+    [HUD showAnimated:YES];
+    [self setHUD:HUD];
+}
++(void)hideHud{
+    [[self HUD] hideAnimated:YES];
+}
 
 + (UIImage *)createQRCodeFromString:(NSString *)string
 {

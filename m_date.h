@@ -12,6 +12,7 @@
 @property (nonatomic,assign)         NSInteger       m_countNum;  //结束时间和当前时间之差 如果为nil表示已经超时
 @property (nonatomic,assign)         NSInteger       startTime;  //最初时间
 @property (nonatomic,assign)         NSInteger      endTime;  //最初时间
+@property (nonatomic,assign)         BOOL            isDone;
 
 + (instancetype)timeModelWithTime:(NSInteger)time endtime:(NSInteger)endTime;
 /**

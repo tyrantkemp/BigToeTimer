@@ -13,15 +13,22 @@
 
 @interface planTableViewCell : SWTableViewCell
 
--(void)loyoutWithDataAndHeight:(planMJ*)plan height:(CGFloat)height;
+
+typedef  NS_ENUM(NSInteger,cellType){
+    cellTypeExistAll,
+    cellTypeExistDelete,
+    cellTypeExistNone
+};
+
+-(void)loyoutWithDataAndHeight:(planMJ*)plan height:(CGFloat)height isShow:(BOOL)show;
 
 -(void)loadTime:(id)date indexPath:(NSIndexPath *)indexPath;
 
 @property(nonatomic,assign)BOOL isDisplay;
-@property(nonatomic,copy)void (^disableCell)(void);
+@property(nonatomic,copy)void (^disableCell)(cellType type);
 @property(nonatomic,assign)NSInteger index;
 @property(nonatomic,assign)double ration;
 @property(nonatomic,strong)planMJ* plan;
 
-
+//-(void)wellDone;
 @end

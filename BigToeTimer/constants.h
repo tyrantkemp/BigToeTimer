@@ -15,40 +15,37 @@
 #define screenheight [[UIScreen  mainScreen ] bounds].size.height
 
 
-#define MAIN_PREFIX @"http://tyrantkemp.imwork.net:21158/imgServ/action/"
-#define LOGIN @"login_validate"
-#define MAIN_CORPORATION @"/corporation"
-#define GET_CORP @"/getCorporation"
-
-#define MAIN_PAGE_COURSES @"MAIN_PAGE_COURSES"
-#define COR_INFO @"corporationInfo"
-#define MAIN_SUFFIX @"PageSize=20"
-
-
-
-
-#define Local
+//#define Local
 
 #ifdef Local
 #define MAIN @"http://tyrantkemp.imwork.net:14635"
 #define IP @"http://tyrantkemp.imwork.net:14635"
+
 #else
-#define MAIN @"http://139.196.21.175:18080/api"
-#define IP @"http://139.196.21.175:18080"
+#define MAIN @"http://118.192.142.24:8080/BigToe"
+#define IP @"http://118.192.142.24:8080"
+
 #endif
 
 //计划表
 #define LIST @"/plan"
 #define PLAN_CREATE @"/createplan"
 #define PLAN_DELETE @"/deleteplan"
-
+#define PLAN_DONE @"/doneplan"
 #define LIST_ALL_DATA @"/getAllPlans"
+#define PLAN_GET_ONE @"/getPlanById"
+#define PLAN_GET_MONTH @"/getPlansByMonthAndUserId"
+#define PLAN_GET_LINE_CHART @"/getPlansToLine"
+
+#define PLAN_GETBY_TYPE_AND_DATE @"/getPlansByType"
 
 
 //app 注册 登录 等
 #define AUTH @"/auth"
 #define APP_LOGIN @"/applogin"
-#define APP_REGISTER @"/appregister"
+#define APP_REGISTER @"/registerAction"
+#define ADVISE @"/advise"
+
 
 //登陆
 //#ifdef Local
@@ -63,7 +60,6 @@
 
 #define PAY_WAY_ZHIFU 2001
 #define PAY_WAY_WECHAT 2002
-
 
 
 

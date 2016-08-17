@@ -42,9 +42,6 @@
     
 }
 
-@property (nonatomic, strong) MBProgressHUD *hud;
-
-
 @property (strong, nonatomic) IBOutlet UIButton *login;
 
 @property (strong, nonatomic) IBOutlet UILabel *thirdloginLB;
@@ -58,8 +55,11 @@
     
     [self setUpSubviews];
     [self setLayout];
-    
+    _login.enabled = YES;
 
+    
+    
+  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back_2"] style:UIBarButtonItemStylePlain  target:self action:@selector(back)];
     
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(quitLoginView) name:QUIT_REGISTER_TO_SETTING object:nil];
@@ -80,7 +80,9 @@
     //        _wechatBtn.hidden = YES;
     //    }
 }
-
+-(void)back{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(void)quitLoginView{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -120,6 +122,8 @@
     [_usernameTF setPlaceholder:@"用户名/邮箱"];
     [_usernameTF setFont:[UIFont systemFontOfSize:16]];
     [_usernameTF setTextColor:[UIColor colorWithRed:0.078 green:0.208 blue:0.422 alpha:1.000]];
+    [_usernameTF setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [_usernameTF setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     
     [self.view addSubview:_usernameTF];
     //用户名图标
@@ -136,6 +140,8 @@
     [_PasswordTF setFont:[UIFont systemFontOfSize:16]];
     [_PasswordTF setTextColor:[UIColor colorWithRed:0.078 green:0.208 blue:0.422 alpha:1.000]];
     [_PasswordTF setSecureTextEntry:YES];
+    [_PasswordTF setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [_PasswordTF setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [self.view addSubview:_PasswordTF];
     _PasswordTF.delegate = self;
     
@@ -169,7 +175,7 @@
         
     } forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_getPwdBtn];
-    
+    _getPwdBtn.hidden=YES;
     
     //qq登录
     _qqBtn = [UIButton createButtonWithFrame:CGRectZero Target:self Selector:@selector(qqlogin:) Image:@"qq-icon" ImagePressed:@"qq-icon"];
@@ -187,7 +193,10 @@
     _weiboBtn = [UIButton createButtonWithFrame:CGRectZero Target:self Selector:@selector(weibologin:) Image:@"weibo-icon" ImagePressed:@"weibo-icon"];
     [self.view addSubview:_weiboBtn];
     
-    
+    _qqBtn.hidden = YES;
+    _weiboBtn.hidden = YES;
+    _wechatBtn.hidden= YES;
+    _thirdloginLB.hidden=YES;
     
     [_usernameTF addTarget:self action:@selector(returnOnKeyboard:) forControlEvents:UIControlEventEditingDidEndOnExit];
     [_PasswordTF addTarget:self action:@selector(returnOnKeyboard:) forControlEvents:UIControlEventEditingDidEndOnExit];
@@ -219,22 +228,22 @@
         layout.rightSpace(screenwith/6).topSpaceByView(_login,20);
     }];
     
-    UIView* line1 = [UIView new];
-    [line1 setBackgroundColor:[UIColor lightGrayColor]];
-    [line1 setUserInteractionEnabled:NO];
-    [self.view addSubview:line1];
-    [line1 zxp_addConstraints:^(ZXPAutoLayoutMaker *layout) {
-        layout.rightSpaceByView(_thirdloginLB,10).widthValue(screenwith/4).heightValue(1).topSpaceEqualTo(_thirdloginLB,10);
-        
-    }];
-    
-    UIView* line2 = [UIView new];
-    [line2 setBackgroundColor:[UIColor lightGrayColor]];
-    [line2 setUserInteractionEnabled:NO];
-    [self.view addSubview:line2];
-    [line2 zxp_addConstraints:^(ZXPAutoLayoutMaker *layout) {
-        layout.leftSpaceByView(_thirdloginLB,10).widthValue(screenwith/4).heightValue(1).topSpaceEqualTo(_thirdloginLB,10);
-    }];
+//    UIView* line1 = [UIView new];
+//    [line1 setBackgroundColor:[UIColor lightGrayColor]];
+//    [line1 setUserInteractionEnabled:NO];
+//    [self.view addSubview:line1];
+//    [line1 zxp_addConstraints:^(ZXPAutoLayoutMaker *layout) {
+//        layout.rightSpaceByView(_thirdloginLB,10).widthValue(screenwith/4).heightValue(1).topSpaceEqualTo(_thirdloginLB,10);
+//        
+//    }];
+//    
+//    UIView* line2 = [UIView new];
+//    [line2 setBackgroundColor:[UIColor lightGrayColor]];
+//    [line2 setUserInteractionEnabled:NO];
+//    [self.view addSubview:line2];
+//    [line2 zxp_addConstraints:^(ZXPAutoLayoutMaker *layout) {
+//        layout.leftSpaceByView(_thirdloginLB,10).widthValue(screenwith/4).heightValue(1).topSpaceEqualTo(_thirdloginLB,10);
+//    }];
     
     [_wechatBtn zxp_addConstraints:^(ZXPAutoLayoutMaker *layout) {
         layout.topSpaceByView(_thirdloginLB,30).widthValue(42).heightValue(42).leftSpace(screenwith/2-16);
@@ -281,11 +290,13 @@
         layout.leftSpaceByView(_pwdImage,4).topSpaceByView(line3,14).rightSpaceEqualTo(_login,0);
         
     }];
-   
+
+}
+
+#pragma mark - kvo 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     
-    
-    
-    
+
 }
 
 - (void)returnOnKeyboard:(UITextField *)sender
@@ -339,7 +350,7 @@
 
 - (IBAction)Login:(UIButton *)sender {
     
-    
+    NSLog(@"登陆");
     if([_usernameTF.text isNullOrEmpty] || [_PasswordTF.text isNullOrEmpty]){
         UIAlertView* alter = [UIAlertView bk_showAlertViewWithTitle:@"错误" message:@"用户名或密码不能为空" cancelButtonTitle:@"OK" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
             
@@ -349,36 +360,28 @@
         return;
     }
     
-    _hud = [Utils createHUD];
-    _hud.labelText = @"正在登录";
-    
-    [_hud show:YES];
-    _hud.userInteractionEnabled = NO;
+    [Utils showHudInView:self.view hint:@"正在登陆"];
 
 
     //用户名过滤掉空格 密码过滤空格MD5加密
     NSString* account = [_usernameTF.text StringWithoutEmpty];
     NSString * md5pwd = [[_PasswordTF.text StringWithoutEmpty] md5Checksum];
     
-    
-    //失败：{"data":null,"errorCode":null,"isSuccess":false,"message":"账户名称或者密码不匹配","pager":null}
+
     NSLog(@"login url:%@",[NSString stringWithFormat:@"%@%@%@",MAIN,AUTH,APP_LOGIN]);
 
     
-    [[XZHttp sharedInstance ] postWithURLString:[NSString stringWithFormat:@"%@%@%@",MAIN,AUTH,APP_LOGIN] parameters:@{@"username":account, @"password":md5pwd} success:^(id responseObject) {
+    [[XZHttp sharedInstance ] postWithURLString:[NSString stringWithFormat:@"%@%@%@",MAIN,AUTH,APP_LOGIN] parameters:@{@"userName":account, @"password":md5pwd} success:^(id responseObject) {
         
-        
+        [Utils hideHud];
         NSDictionary* data = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
         NSInteger isSuccess = [(NSString*)data[@"isSuccess"] integerValue];
         
         // 登陆失败 isSuccess == 0
         if(isSuccess != 1){
             NSString* errMeesage = data[@"message"];
-            _hud.detailsLabelFont = [UIFont boldSystemFontOfSize:16];
-            _hud.mode = MBProgressHUDModeCustomView;
-            _hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUD-error"]];
-            _hud.labelText = errMeesage;            
-            [_hud hide:YES afterDelay:2];
+        
+            [Utils showHUDWithErrorMsg:errMeesage];
              return;
         }
         
@@ -386,16 +389,15 @@
         [Config saveOwnAccount:_usernameTF.text andPassword:_PasswordTF.text];
         //登陆成功后返回上一页
         [self.navigationController popViewControllerAnimated:YES];
-
         //获取并保存个人资料
-        //NSDictionary* user = data[@"user"];
-       // [self renewUser:user];
+        NSDictionary* user = data[@"data"];
+        userMJ*  usermj = [userMJ mj_objectWithKeyValues:user];
         
-        
-        
+        [self renewUser:usermj];
+    
     } failure:^(NSError *error) {
         
-        [Utils createHUDErrorWithError:error];
+        [Utils showHUDWithError:error];
      
     }];
     
@@ -434,10 +436,10 @@
 //     ];
 }
 
--(void)renewUser:(NSDictionary*) userdict{
+-(void)renewUser:(userMJ*) user{
     //userDefault 保存 登陆用户信息
     [self saveCookies];
-    
+    [Config saveProfile:user];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"userRefresh" object:@(YES)];
     
 }
@@ -448,6 +450,10 @@
     [defaults setObject: cookiesData forKey: @"sessionCookies"];
     [defaults synchronize];
     
+}
+#pragma mark - dellac
+-(void)dealloc{
+     
 }
 
 

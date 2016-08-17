@@ -11,6 +11,8 @@
 #import "SettingsViewController.h"
 #import "ListViewController.h"
 #import "detailViewController.h"
+#import "AnalysisTableViewController.h"
+#import "LoginViewController.h"
 
 @interface MainContentViewController ()<UITabBarControllerDelegate>{
     UIButton* _centerButton;
@@ -46,18 +48,26 @@
     
     
     //设置
-    UIStoryboard * settingSB = [UIStoryboard storyboardWithName:@"Settings" bundle:nil];
-    UINavigationController * settingsNav = [settingSB instantiateViewControllerWithIdentifier:@"nav"];
+//    UIStoryboard * settingSB = [UIStoryboard storyboardWithName:@"Settings" bundle:nil];
+//    UINavigationController * settingsNav = [settingSB instantiateViewControllerWithIdentifier:@"nav"];
+
+    //统计
+    AnalysisTableViewController * anlyCtl = [AnalysisTableViewController new];
+     anlyCtl.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu_1"] style:UIBarButtonItemStylePlain target:self action:@selector(showSideMenu)];
+    UINavigationController* anNav= [[UINavigationController alloc]initWithRootViewController:anlyCtl];
+    
+    
+    
+    
+    
     //tab
     self.viewControllers =@[
-                            
                             listnav,
                             [UIViewController new],
-                            settingsNav
-                            
+                            anNav
                             ];
-    NSArray* titles = @[@"计划",@"",@"设置"];
-    NSArray* images = @[@"list_1_normal",@"",@"setting_1_normal"];
+    NSArray* titles = @[@"计划",@"",@"统计"];
+    NSArray* images = @[@"list_1_normal",@"",@"analyse_1_normal"];
     
     [self.tabBar.items enumerateObjectsUsingBlock:^(UITabBarItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
         [item setTitle:titles[idx]];
@@ -77,8 +87,11 @@
     _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     
     NSArray *buttonTitles = @[@"定时", @"全天",@"其他"];
-    NSArray *buttonImages = @[@"tweetEditing", @"picture",@"shooting"];
-    int buttonColors[] = {0xe69961, 0x0dac6b, 0x24a0c4};
+   // NSArray *buttonImages = @[@"tweetEditing", @"picture",@"omit"];
+    NSArray *buttonImages = @[@"sandglass", @"clock_1",@"omit"];
+
+    
+    int buttonColors[] = {0xe69961, 0x0dac6b, 0xA9A9A9};
     
     for (int i = 0; i < 3; i++) {
         OptionButton *optionButton = [[OptionButton alloc] initWithTitle:buttonTitles[i]
@@ -98,6 +111,7 @@
         [_optionButtons addObject:optionButton];
     }
 
+    //((UIButton*)(_optionButtons[2])).enabled=NO;
 }
 -(void)addCenterButtonWithImage:(UIImage *)buttonImage
 {
@@ -221,22 +235,59 @@
         case 0: {
             NSLog(@"限时计划");
             
-            detailViewController * detailctl = [detailViewController new];
-            [self presentModalViewController:detailctl animated:YES];
+            if([Config getOwnID]==0){
+                UIAlertView *alert = [UIAlertView bk_showAlertViewWithTitle:@"请先登录" message:@"左滑点击头像登录" cancelButtonTitle:@"确定" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    if(buttonIndex==0){
+                       // LoginViewController* logCtl = [LoginViewController new];
+                      //  [self.navigationController pushViewController:logCtl animated:YES];
+                        //[self presentModalViewController:logCtl animated:YES];
+
+                    }
+                }];
+                
+                alert.delegate =self;
+                [alert show];
+            }else{
+                detailViewController * detailctl = [detailViewController new];
+                [self presentModalViewController:detailctl animated:YES];
+            }
+            
+       
             
             break;
         }
         case 1: {
             NSLog(@"全天计划");
-            detailViewController * detailctl = [detailViewController new];
-            detailctl.plantype = PlanTypeAllDay;
-            [self presentModalViewController:detailctl animated:YES];
+            
+            if([Config getOwnID]==0){
+                UIAlertView *alert = [UIAlertView bk_showAlertViewWithTitle:@"请先登录" message:@"左滑点击头像登录" cancelButtonTitle:@"确定" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    if(buttonIndex==0){
+                        // LoginViewController* logCtl = [LoginViewController new];
+                        //  [self.navigationController pushViewController:logCtl animated:YES];
+                        //[self presentModalViewController:logCtl animated:YES];
+                        
+                    }
+                }];
+                
+                alert.delegate =self;
+                [alert show];
+            }else{
+                detailViewController * detailctl = [detailViewController new];
+                detailctl.plantype = PlanTypeAllDay;
+                [self presentModalViewController:detailctl animated:YES];
+            }
+           
             
             break;
         }
         case 2: {
             NSLog(@"其他");
 
+            UIAlertView * alert = [UIAlertView bk_showAlertViewWithTitle:@"ooops!!" message:@"该功能还在开发中..." cancelButtonTitle:@"确定" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                
+            }];
+            alert.delegate =self;
+            [alert show];
           
             break;
         }
@@ -246,7 +297,11 @@
     [self buttonPressed];
 }
 
+#pragma mark - 点击显示侧边栏
+-(void)showSideMenu{
+    [self.sideMenuViewController presentLeftMenuViewController];
 
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -8,17 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "userMJ.h"
 
-@class OSCUser;
 
 @interface Config : NSObject
 
 + (void)saveOwnAccount:(NSString *)account andPassword:(NSString *)password;
 
-+ (void)saveProfile:(OSCUser *)user;
-+ (void)updateProfile:(OSCUser *)user;
++ (void)saveProfile:(userMJ *)user;
++ (void)updateProfile:(userMJ *)user;
 + (void)clearProfile;
-+ (OSCUser *)myProfile;
++ (userMJ *)myProfile;
 
 + (void)savePortrait:(UIImage *)portrait;
 

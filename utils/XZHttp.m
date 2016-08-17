@@ -79,15 +79,17 @@ static id _instance = nil;
      *  请求超时的时间
      */
     manager.requestSerializer.timeoutInterval = 30;
-    [manager GET:URLString parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (success) {
+    [manager GET:URLString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if(success){
             success(responseObject);
+            
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {
             failure(error);
         }
     }];
+    
 }
 
 #pragma mark -- POST请求 --
@@ -98,7 +100,7 @@ static id _instance = nil;
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager POST:URLString parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:URLString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success) {
             success(responseObject);
         }
@@ -107,7 +109,7 @@ static id _instance = nil;
             failure(error);
         }
     }];
-}
+    }
 
 #pragma mark -- POST/GET网络请求 --
 - (void)requestWithURLString:(NSString *)URLString
@@ -121,9 +123,10 @@ static id _instance = nil;
     switch (type) {
         case HttpRequestTypeGet:
         {
-            [manager GET:URLString parameters:nil  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                if (success) {
+            [manager GET:URLString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                if(success){
                     success(responseObject);
+                    
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 if (failure) {
@@ -134,7 +137,7 @@ static id _instance = nil;
             break;
         case HttpRequestTypePost:
         {
-            [manager POST:URLString parameters:parameters  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [manager POST:URLString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 if (success) {
                     success(responseObject);
                 }
@@ -143,6 +146,7 @@ static id _instance = nil;
                     failure(error);
                 }
             }];
+
         }
             break;
     }
@@ -157,9 +161,11 @@ static id _instance = nil;
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    
     [manager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        [formData appendPartWithFileData:uploadParam.data name:uploadParam.name fileName:uploadParam.filename mimeType:uploadParam.mimeType];
-    }  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+         [formData appendPartWithFileData:uploadParam.data name:uploadParam.name fileName:uploadParam.filename mimeType:uploadParam.mimeType];
+    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success) {
             success(responseObject);
         }
@@ -168,6 +174,7 @@ static id _instance = nil;
             failure(error);
         }
     }];
+    
 }
 
 @end

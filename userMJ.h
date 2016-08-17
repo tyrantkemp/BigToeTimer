@@ -11,4 +11,12 @@
 @interface userMJ : NSObject
 @property(nonatomic,assign) NSInteger userId;
 @property(nonatomic,strong) NSString* userName;
+@property(nonatomic,strong)NSString* password;
+@property(nonatomic,strong)NSString* email;
+@property(nonatomic,strong)NSString* mobile;
+
+@property(nonatomic,strong)NSString* creatTime;
+@property(nonatomic,strong)NSString* updateTime;
+
+
 @end

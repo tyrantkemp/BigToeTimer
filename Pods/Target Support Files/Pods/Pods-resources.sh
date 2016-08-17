@@ -65,7 +65,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "GPUImage/framework/Resources/lookup_soft_elegance_1.png"
   install_resource "GPUImage/framework/Resources/lookup_soft_elegance_2.png"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
-  install_resource "SSKeychain/Support/en.lproj"
+  install_resource "SSKeychain/Support/SSKeychain.bundle"
   install_resource "UMengSocial/Umeng_SDK_Social_iOS_ARM64_5.0/UMSocial_Sdk_5.0/UMSocialSDKResourcesNew.bundle"
   install_resource "UMengSocial/Umeng_SDK_Social_iOS_ARM64_5.0/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI/TencentOpenApi_IOS_Bundle.bundle"
   install_resource "UMengSocial/Umeng_SDK_Social_iOS_ARM64_5.0/UMSocial_Sdk_Extra_Frameworks/SinaSSO/WeiboSDK.bundle"
@@ -79,6 +79,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "UMengSocial/Umeng_SDK_Social_iOS_ARM64_5.0/UMSocial_Sdk_5.0/SocialSDKXib/UMSShareListController.xib"
   install_resource "UMengSocial/Umeng_SDK_Social_iOS_ARM64_5.0/UMSocial_Sdk_5.0/en.lproj"
   install_resource "UMengSocial/Umeng_SDK_Social_iOS_ARM64_5.0/UMSocial_Sdk_5.0/zh-Hans.lproj"
+  install_resource "${BUILT_PRODUCTS_DIR}/DXPopover.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/KRVideoPlayer.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -89,7 +90,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "GPUImage/framework/Resources/lookup_soft_elegance_1.png"
   install_resource "GPUImage/framework/Resources/lookup_soft_elegance_2.png"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
-  install_resource "SSKeychain/Support/en.lproj"
+  install_resource "SSKeychain/Support/SSKeychain.bundle"
   install_resource "UMengSocial/Umeng_SDK_Social_iOS_ARM64_5.0/UMSocial_Sdk_5.0/UMSocialSDKResourcesNew.bundle"
   install_resource "UMengSocial/Umeng_SDK_Social_iOS_ARM64_5.0/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI/TencentOpenApi_IOS_Bundle.bundle"
   install_resource "UMengSocial/Umeng_SDK_Social_iOS_ARM64_5.0/UMSocial_Sdk_Extra_Frameworks/SinaSSO/WeiboSDK.bundle"
@@ -103,6 +104,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "UMengSocial/Umeng_SDK_Social_iOS_ARM64_5.0/UMSocial_Sdk_5.0/SocialSDKXib/UMSShareListController.xib"
   install_resource "UMengSocial/Umeng_SDK_Social_iOS_ARM64_5.0/UMSocial_Sdk_5.0/en.lproj"
   install_resource "UMengSocial/Umeng_SDK_Social_iOS_ARM64_5.0/UMSocial_Sdk_5.0/zh-Hans.lproj"
+  install_resource "${BUILT_PRODUCTS_DIR}/DXPopover.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/KRVideoPlayer.bundle"
 fi
 
