@@ -29,6 +29,7 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
+  - Canvas (0.1.2)
   - DateTools (1.7.0)
   - DTCoreText (1.6.17):
     - DTFoundation/Core (~> 1.7.5)
@@ -53,6 +54,7 @@ PODS:
   - MJRefresh (3.1.12)
   - PNChart (0.8.9):
     - UICountingLabel (~> 1.2.0)
+  - pop (1.0.9)
   - Qiniu (7.1.0.1):
     - AFNetworking (~> 3)
     - HappyDNS (~> 0.3)
@@ -76,6 +78,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - BlocksKit
+  - Canvas
   - DateTools
   - DTCoreText
   - DXPopover
@@ -86,6 +89,7 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - PNChart
+  - pop
   - Qiniu (~> 7.0)
   - Reachability
   - Realm (= 0.98.5)
@@ -101,6 +105,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  Canvas: eb861e3b555d032648146c8ffda1a5dea40059ca
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DTCoreText: 3ea8bba23dd2141ba18adb227a7dd33a822df1c4
   DTFoundation: 3b6b1b817d2a7fb02e7eaf2596c922a68145bd43
@@ -114,6 +119,7 @@ SPEC CHECKSUMS:
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   PNChart: 84774d225c2126ded6c93d4dbe6ae98c3a73c2d2
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   Qiniu: 0e92ff0d1b9afbc55275306671284e4ebeb08d03
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   Realm: db08379969e45cea2edd1c3c0a090fe9e22d2d2f

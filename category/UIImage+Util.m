@@ -7,11 +7,9 @@
 //
 
 #import "UIImage+Util.h"
-
 @implementation UIImage (Util)
 
 // 同 - (UIImage *)jsq_imageMaskedWithColor:(UIColor *)maskColor
-
 - (UIImage *)imageMaskedWithColor:(UIColor *)maskColor
 {
     NSParameterAssert(maskColor != nil);
@@ -61,4 +59,6 @@
          // 返回新的改变大小后的图片
          return scaledImage;
      }
+
+
 @end

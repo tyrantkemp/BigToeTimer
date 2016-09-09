@@ -9,6 +9,8 @@
 #import "planTableViewCell.h"
 #import "LocalNotificationsManager.h"
 #import "NSDate+Format.h"
+#import "Canvas.h"
+
 @interface planTableViewCell(){
     
     CGFloat _height;

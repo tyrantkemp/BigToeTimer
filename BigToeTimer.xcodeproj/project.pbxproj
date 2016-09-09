@@ -17,6 +17,7 @@
 		AF00E70A1D404E2E00A219F2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AF00E7091D404E2E00A219F2 /* libz.tbd */; };
 		AF00E70F1D40546B00A219F2 /* emailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF00E70E1D40546B00A219F2 /* emailViewController.m */; };
 		AF00E7121D40547A00A219F2 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF00E7111D40547A00A219F2 /* AboutViewController.m */; };
+		AF227D5D1D66B4F600E59062 /* demo.cer in Resources */ = {isa = PBXBuildFile; fileRef = AF227D5C1D66B4F600E59062 /* demo.cer */; };
 		AF3CBC2F1D333AB000B1FAC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBC2E1D333AB000B1FAC6 /* main.m */; };
 		AF3CBC321D333AB000B1FAC6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBC311D333AB000B1FAC6 /* AppDelegate.m */; };
 		AF3CBC3B1D333AB000B1FAC6 /* BigToeTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBC391D333AB000B1FAC6 /* BigToeTimer.xcdatamodeld */; };
@@ -111,6 +112,7 @@
 		AF00E70E1D40546B00A219F2 /* emailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = emailViewController.m; sourceTree = "<group>"; };
 		AF00E7101D40547A00A219F2 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		AF00E7111D40547A00A219F2 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		AF227D5C1D66B4F600E59062 /* demo.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo.cer; sourceTree = "<group>"; };
 		AF3CBC2A1D333AB000B1FAC6 /* BigToeTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BigToeTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF3CBC2E1D333AB000B1FAC6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AF3CBC301D333AB000B1FAC6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = BigToeTimer/AppDelegate.h; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 		AF3CBC211D333AB000B1FAC6 = {
 			isa = PBXGroup;
 			children = (
+				AF227D5C1D66B4F600E59062 /* demo.cer */,
 				AF3CBC7B1D33447700B1FAC6 /* Others */,
 				AF3CBC2D1D333AB000B1FAC6 /* Supporting Files */,
 				AF3CBC7A1D33444400B1FAC6 /* Application */,
@@ -762,6 +765,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF227D5D1D66B4F600E59062 /* demo.cer in Resources */,
 				AF3CBC961D33473900B1FAC6 /* Main.storyboard in Resources */,
 				AF3CBC401D333AB000B1FAC6 /* LaunchScreen.storyboard in Resources */,
 				AF3CBC3D1D333AB000B1FAC6 /* Assets.xcassets in Resources */,

@@ -367,7 +367,7 @@
         
     }else {
         _totaltime -- ;
-        NSString* title = [NSString stringWithFormat:@" 剩余 %d s",_totaltime];
+        NSString* title = [NSString stringWithFormat:@" 剩余 %ld s",(long)_totaltime];
         [_getSMSBtn setTitle:title forState:UIControlStateNormal];
         [_getSMSBtn setEnabled:NO];
         

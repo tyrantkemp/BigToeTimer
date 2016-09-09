@@ -10,6 +10,7 @@
 #import "DoneListTableViewController.h"
 #import "planTableViewCell.h"
 #import "planMJ.h"
+#import "pop.h"
 #import "detailViewController.h"
 #import <MBProgressHUD.h>
 static NSString* cellId= @"donelist_plan_cell";
@@ -84,11 +85,20 @@ static NSString* cellId= @"donelist_plan_cell";
     
     cell.rightUtilityButtons = nil;
     cell.delegate = self;
-    
-    
+ 
     cell.index = [indexPath row]+1;
     [cell loyoutWithDataAndHeight:self.objects[indexPath.row] height:_cellheight isShow:YES];
     
+//    POPDecayAnimation* decay = [POPDecayAnimation animationWithPropertyNamed:kPOPLayerPositionX];
+//    decay.velocity = @(1);
+//    decay.fromValue = @(100.0);
+//    decay.beginTime = CACurrentMediaTime()+indexPath.row+1;
+//    [cell.layer pop_addAnimation:decay forKey:[NSString stringWithFormat:@"cell.%d",indexPath.row+1]];
+//
+//    POPBasicAnimation * base = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
+//    base.fromValue = @(0.1);
+//    base.toValue = @(1.0);
+//    [cell.layer pop_addAnimation:base forKey:@"cell.opacity"];
     
     
   //  [cell loadTime:_limitdateArray[indexPath.row] indexPath:indexPath];

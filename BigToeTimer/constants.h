@@ -22,8 +22,8 @@
 #define IP @"http://tyrantkemp.imwork.net:14635"
 
 #else
-#define MAIN @"http://118.192.142.24:8080/BigToe"
-#define IP @"http://118.192.142.24:8080"
+#define MAIN @"https://118.192.142.24:8443/BigToe"
+#define IP @"https://118.192.142.24:8443"
 
 #endif
 

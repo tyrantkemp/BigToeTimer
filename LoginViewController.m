@@ -13,7 +13,7 @@
 #import "MBProgressHUD.h"
 #import "XZHttp.h"
 #import "userMJ.h"
-
+#import "pop/POP.h"
 
 #import "NSString+Util.h"
 
@@ -58,6 +58,12 @@
     _login.enabled = YES;
 
     
+    [_login addTarget:self action:@selector(scaleTosmll) forControlEvents:UIControlEventTouchDown|UIControlEventTouchDragEnter];
+    [_login addTarget:self action:@selector(scaleToDefault)
+      forControlEvents:UIControlEventTouchDragExit];
+    [_login addTarget:self action:@selector(scaleAnimation)
+   forControlEvents:UIControlEventTouchUpInside];
+    
     
   self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back_2"] style:UIBarButtonItemStylePlain  target:self action:@selector(back)];
     
@@ -79,6 +85,23 @@
     //    if (![WXApi isWXAppInstalled]) {
     //        _wechatBtn.hidden = YES;
     //    }
+}
+-(void)scaleTosmll{
+    POPBasicAnimation * base  = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    base.toValue = [NSValue valueWithCGSize:CGSizeMake(0.9, 0.9)];
+    [_login.layer pop_addAnimation:base forKey:@"login.base"];
+}
+-(void)scaleToDefault{
+    POPBasicAnimation* base = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    base.toValue = [NSValue valueWithCGSize:CGSizeMake(1.0, 1.0)];
+    [_login.layer pop_addAnimation:base forKey:@"login.base.back"];
+}
+-(void)scaleAnimation{
+    POPSpringAnimation *scaleAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    scaleAnimation.velocity = [NSValue valueWithCGSize:CGSizeMake(3.f, 3.f)];
+    scaleAnimation.toValue = [NSValue valueWithCGSize:CGSizeMake(1.f, 1.f)];
+    scaleAnimation.springBounciness = 18.0f;
+    [_login.layer pop_addAnimation:scaleAnimation forKey:@"layerScaleSpringAnimation"];
 }
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];

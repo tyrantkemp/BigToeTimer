@@ -12,6 +12,7 @@
 #import "MBProgressHUD.h"
 #import "DoneListTableViewController.h"
 
+#import <POP/POP.h>
 
 @interface DoneViewController ()<PNChartDelegate,UITableViewDataSource,UITableViewDelegate>{
     UIButton * _detailBtn;

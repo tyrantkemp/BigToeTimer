@@ -289,7 +289,7 @@
             plan.plantype = _plantype;
             
             NSDate * now = [NSDate date];
-            plan.planName = [NSString stringWithFormat:@"%lld_%d_%d_%d_%d_%d_%d",[Config getOwnID],[now year],[now month],[now day],[now hour],[now minute],[now second]];
+            plan.planName = [NSString stringWithFormat:@"%lld_%ld_%ld_%ld_%ld_%ld_%ld",[Config getOwnID],(long)[now year],(long)[now month],(long)[now day],(long)[now hour],(long)[now minute],(long)[now second]];
             
             
             [self save:url data:plan];
@@ -327,7 +327,7 @@
         [[NSNotificationCenter defaultCenter]postNotificationName:PLAN_NEW object:plan];
         
     }];
-    NSDictionary* dict = @{@"content":plan.content,@"startTime":[NSString stringWithFormat:@"%d",plan.startTime],@"endTime":[NSString stringWithFormat:@"%d",plan.endTime],@"planType":[NSString stringWithFormat:@"%d",plan.plantype],@"userId":[NSString stringWithFormat:@"%lld",[Config getOwnID]],@"planName":plan.planName};
+    NSDictionary* dict = @{@"content":plan.content,@"startTime":[NSString stringWithFormat:@"%ld",(long)plan.startTime],@"endTime":[NSString stringWithFormat:@"%ld",(long)plan.endTime],@"planType":[NSString stringWithFormat:@"%ld",(long)plan.plantype],@"userId":[NSString stringWithFormat:@"%lld",[Config getOwnID]],@"planName":plan.planName};
     
     [[XZHttp sharedInstance]postWithURLString:url parameters:dict success:^(id responseObject) {
         NSDictionary* data = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
@@ -361,7 +361,7 @@
         [[NSNotificationCenter defaultCenter]postNotificationName:PLAN_EDIT object:nil];
         
     }];
-    NSDictionary* dict = @{@"planId":[NSString stringWithFormat:@"%ld",(long)plan.planId],@"content":plan.content,@"startTime":[NSString stringWithFormat:@"%d",plan.startTime],@"endTime":[NSString stringWithFormat:@"%d",plan.endTime],@"planType":[NSString stringWithFormat:@"%d",plan.plantype],@"userId":[NSString stringWithFormat:@"%lld",[Config getOwnID]],@"planName":plan.planName};
+    NSDictionary* dict = @{@"planId":[NSString stringWithFormat:@"%ld",(long)plan.planId],@"content":plan.content,@"startTime":[NSString stringWithFormat:@"%ld",(long)plan.startTime],@"endTime":[NSString stringWithFormat:@"%ld",(long)plan.endTime],@"planType":[NSString stringWithFormat:@"%ld",(long)plan.plantype],@"userId":[NSString stringWithFormat:@"%lld",[Config getOwnID]],@"planName":plan.planName};
     
     [[XZHttp sharedInstance]postWithURLString:url parameters:dict success:^(id responseObject) {
         [Utils hideHud];
