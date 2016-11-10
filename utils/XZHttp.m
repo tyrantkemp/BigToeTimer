@@ -105,7 +105,7 @@ static id _instance = nil;
      *  请求超时的时间
      */
     manager.requestSerializer.timeoutInterval = 30;
-    [manager setSecurityPolicy:[self customSecurityPolicy]];
+   [manager setSecurityPolicy:[self customSecurityPolicy]];
 
     [manager GET:URLString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if(success){

@@ -33,10 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-
     self.view.backgroundColor = [UIColor colorWithWhite:0.937 alpha:1.000];
-    
     self.tabBar.translucent = NO;
 
     
@@ -55,10 +52,6 @@
     AnalysisTableViewController * anlyCtl = [AnalysisTableViewController new];
      anlyCtl.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu_1"] style:UIBarButtonItemStylePlain target:self action:@selector(showSideMenu)];
     UINavigationController* anNav= [[UINavigationController alloc]initWithRootViewController:anlyCtl];
-    
-    
-    
-    
     
     //tab
     self.viewControllers =@[
@@ -116,16 +109,13 @@
 -(void)addCenterButtonWithImage:(UIImage *)buttonImage
 {
     _centerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    
     CGPoint origin = [self.view convertPoint:self.tabBar.center toView:self.tabBar];
     CGSize buttonSize = CGSizeMake(self.tabBar.frame.size.width / 5 - 6, self.tabBar.frame.size.height - 4);
     _centerButton.frame = CGRectMake(origin.x - buttonSize.height/2, origin.y - buttonSize.height/2, buttonSize.height, buttonSize.height);
-    
     [_centerButton setCornerRadius:buttonSize.height/2];
     [_centerButton setBackgroundColor:[UIColor colorWithHex:0x24a83d]];
     [_centerButton setImage:buttonImage forState:UIControlStateNormal];
     [_centerButton addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
-    
     [self.tabBar addSubview:_centerButton];
 }
 
@@ -228,13 +218,11 @@
 
 
 #pragma mark - 处理点击事件
-
 - (void)onTapOptionButton:(UIGestureRecognizer *)recognizer
 {
     switch (recognizer.view.tag) {
         case 0: {
             NSLog(@"限时计划");
-            
             if([Config getOwnID]==0){
                 UIAlertView *alert = [UIAlertView bk_showAlertViewWithTitle:@"请先登录" message:@"左滑点击头像登录" cancelButtonTitle:@"确定" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
                     if(buttonIndex==0){
@@ -244,12 +232,12 @@
 
                     }
                 }];
-                
                 alert.delegate =self;
                 [alert show];
             }else{
                 detailViewController * detailctl = [detailViewController new];
-                [self presentModalViewController:detailctl animated:YES];
+                [self presentViewController:detailctl animated:YES completion:nil];
+                
             }
             
        
@@ -274,7 +262,7 @@
             }else{
                 detailViewController * detailctl = [detailViewController new];
                 detailctl.plantype = PlanTypeAllDay;
-                [self presentModalViewController:detailctl animated:YES];
+                [self presentViewController:detailctl animated:YES completion:nil];
             }
            
             

@@ -24,7 +24,6 @@
     if (self = [super init]) {
         _button = [UIImageView new];
         _button.backgroundColor = color;
-        
         _image = [UIImageView new];
         _image.image = image;
         _image.translatesAutoresizingMaskIntoConstraints = NO;

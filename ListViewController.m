@@ -43,20 +43,16 @@ static NSString * cellId = @"ListViewcell";
         _limitdateArray = [NSMutableArray new];
         _alldaydataArray = [NSMutableArray new];
         _predayindex = 0;
-        
         _cellheight = 100;
         __weak ListViewController * corpctl = self;
-        
         self.generateURL = ^NSString*(NSUInteger page){
-            
-            NSString* url =[NSString stringWithFormat:@"%@%@%@?userId=%@&predayindex=%d", MAIN, LIST,LIST_ALL_DATA,[NSString stringWithFormat:@"%lld",[Config getOwnID]],_predayindex];
+            NSString* url =[NSString stringWithFormat:@"%@%@%@?userId=%@&predayindex=%d", MAIN, LIST,LIST_ALL_DATA,[NSString stringWithFormat:@"%lld",[Config getOwnID]],corpctl.predayindex];
             //NSLog(@"url:%@",url);
             return url;
             
         };
         
         self.tableWillReload = ^(NSUInteger count){
-           
             corpctl.lastCell.status = LastCellStatusEmpty;
         };
         
@@ -463,15 +459,8 @@ static NSString * cellId = @"ListViewcell";
             
             
             NSLog(@"isPassed：%hhd",plan.isPassed);
+            [self presentViewController:detailctl animated:YES completion:nil];
 
-            [self presentModalViewController:detailctl animated:YES];
-            
-            
-            
-            
-            
-            
-            
         }
 
         

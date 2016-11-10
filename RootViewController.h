@@ -7,7 +7,9 @@
 //
 
 #import <RESideMenu/RESideMenu.h>
+#import "AppDelegate.h"
 
 @interface RootViewController : RESideMenu
 
 @end
+AppDelegate

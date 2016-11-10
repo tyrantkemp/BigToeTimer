@@ -24,7 +24,6 @@
 #else
 #define MAIN @"https://118.192.142.24:8443/BigToe"
 #define IP @"https://118.192.142.24:8443"
-
 #endif
 
 //计划表
@@ -38,6 +37,10 @@
 #define PLAN_GET_LINE_CHART @"/getPlansToLine"
 
 #define PLAN_GETBY_TYPE_AND_DATE @"/getPlansByType"
+
+
+
+
 
 
 //app 注册 登录 等

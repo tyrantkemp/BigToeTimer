@@ -27,25 +27,18 @@
     NSLog(@"id:%@",identifier);
     
     [self loadCookies];
-    
-    
-    
-    
-    //控件外观
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-    
-    
+    //状态栏外观 light: 时间和电池为白色
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    //navigationctl 的导航栏 title颜色和 按钮颜色
     NSDictionary *navbarTitleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
     [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    
-    
-    [[UITabBar appearance] setTintColor:[UIColor colorWithHex:0x15A230]];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHex:0x15A230]} forState:UIControlStateSelected];
-    
-    
     //导航栏背景
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.365 green:0.780 blue:0.145 alpha:1.000]];
+    
+    //navigationctl 下面tab的按钮文字颜色
+    [[UITabBar appearance] setTintColor:[UIColor colorWithHex:0x15A230]];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHex:0x15A230]} forState:UIControlStateSelected];
     //tabbar 背景颜色
     [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:0.955 green:0.970 blue:0.986 alpha:1.000]];
     
@@ -53,10 +46,7 @@
     [UISearchBar appearance].tintColor = [UIColor colorWithHex:0x15A230];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setCornerRadius:14.0];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setAlpha:0.6];
-    
-    
     UIMenuController *menuController = [UIMenuController sharedMenuController];
-    
     [menuController setMenuVisible:YES animated:YES];
     [menuController setMenuItems:@[
                                    [[UIMenuItem alloc] initWithTitle:@"复制" action:NSSelectorFromString(@"copyText:")],
