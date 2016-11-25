@@ -8,9 +8,7 @@
 
 #import "RootViewController.h"
 #import "SideMenuViewController.h"
-@interface RootViewController ()
 
-@end
 
 @implementation RootViewController
 -(void)awakeFromNib{

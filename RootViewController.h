@@ -12,4 +12,3 @@
 @interface RootViewController : RESideMenu
 
 @end
-AppDelegate

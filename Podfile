@@ -1,5 +1,4 @@
-pod 'Realm','0.98.5'
-pod 'Realm+JSON', '~> 0.2'
+target "BigToeTimer" do
 pod 'AFNetworking'
 pod 'Qiniu', '~> 7.0'
 pod 'ZXPAutoLayout'
@@ -23,3 +22,4 @@ pod 'PNChart'
 pod 'DXPopover'
 pod 'pop'
 pod 'Canvas'
+end

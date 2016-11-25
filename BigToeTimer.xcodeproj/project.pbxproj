@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6456408996C9C1F3074251FB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579A6E15FC0CE81AC3C176B2 /* libPods.a */; };
 		AF00E6FD1D3E65D000A219F2 /* DoneListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF00E6FC1D3E65D000A219F2 /* DoneListTableViewController.m */; };
 		AF00E7001D3FAE6D00A219F2 /* NSDate+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = AF00E6FF1D3FAE6D00A219F2 /* NSDate+Format.m */; };
 		AF00E7021D404DE500A219F2 /* tingyunApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF00E7011D404DE500A219F2 /* tingyunApp.framework */; };
@@ -63,7 +62,6 @@
 		AF3CBD191D348BCE00B1FAC6 /* m_date.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBD181D348BCE00B1FAC6 /* m_date.m */; };
 		AF3CBD2E1D35571F00B1FAC6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3CBD2D1D35571F00B1FAC6 /* AVFoundation.framework */; };
 		AF3CBD311D35C41C00B1FAC6 /* detailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBD301D35C41C00B1FAC6 /* detailViewController.m */; };
-		AF3CBD341D37741B00B1FAC6 /* r_plan.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBD331D37741B00B1FAC6 /* r_plan.m */; };
 		AF3CBD381D3CB19700B1FAC6 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBD371D3CB19700B1FAC6 /* SideMenuViewController.m */; };
 		AF3CBD3C1D3CC79600B1FAC6 /* AnalysisTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBD3B1D3CC79600B1FAC6 /* AnalysisTableViewController.m */; };
 		AF3CBD3F1D3CD07E00B1FAC6 /* AnalyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBD3E1D3CD07E00B1FAC6 /* AnalyTableViewCell.m */; };
@@ -76,6 +74,7 @@
 		AF3CBD561D3DB85D00B1FAC6 /* MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBD551D3DB85D00B1FAC6 /* MenuView.m */; };
 		AF3CBD581D3DBA8800B1FAC6 /* data in Resources */ = {isa = PBXBuildFile; fileRef = AF3CBD571D3DBA8800B1FAC6 /* data */; };
 		AF3CBD5B1D3E2C7E00B1FAC6 /* LocalNotificationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3CBD5A1D3E2C7E00B1FAC6 /* LocalNotificationsManager.m */; };
+		E5BFDBFDE6695145BA28BF65 /* libPods-BigToeTimer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44D2B614C04906EB1110A1F8 /* libPods-BigToeTimer.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,9 +95,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4214051AC075E4B6A500E43E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		579A6E15FC0CE81AC3C176B2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		926C71FBA4D484B45151CC27 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		44D2B614C04906EB1110A1F8 /* libPods-BigToeTimer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BigToeTimer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83D396125DF62B1EAFE558CF /* Pods-BigToeTimer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigToeTimer.release.xcconfig"; path = "Pods/Target Support Files/Pods-BigToeTimer/Pods-BigToeTimer.release.xcconfig"; sourceTree = "<group>"; };
+		8BD93CEF2DBDBE43F57D7161 /* Pods-BigToeTimer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigToeTimer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BigToeTimer/Pods-BigToeTimer.debug.xcconfig"; sourceTree = "<group>"; };
 		AF00E6FB1D3E65D000A219F2 /* DoneListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoneListTableViewController.h; sourceTree = "<group>"; };
 		AF00E6FC1D3E65D000A219F2 /* DoneListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoneListTableViewController.m; sourceTree = "<group>"; };
 		AF00E6FE1D3FAE6D00A219F2 /* NSDate+Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Format.h"; sourceTree = "<group>"; };
@@ -200,8 +199,6 @@
 		AF3CBD2D1D35571F00B1FAC6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		AF3CBD2F1D35C41C00B1FAC6 /* detailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = detailViewController.h; sourceTree = "<group>"; };
 		AF3CBD301D35C41C00B1FAC6 /* detailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = detailViewController.m; sourceTree = "<group>"; };
-		AF3CBD321D37741B00B1FAC6 /* r_plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = r_plan.h; sourceTree = "<group>"; };
-		AF3CBD331D37741B00B1FAC6 /* r_plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = r_plan.m; sourceTree = "<group>"; };
 		AF3CBD361D3CB19700B1FAC6 /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuViewController.h; sourceTree = "<group>"; };
 		AF3CBD371D3CB19700B1FAC6 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuViewController.m; sourceTree = "<group>"; };
 		AF3CBD3A1D3CC79600B1FAC6 /* AnalysisTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalysisTableViewController.h; sourceTree = "<group>"; };
@@ -238,8 +235,8 @@
 				AF3CBD481D3CD9CB00B1FAC6 /* Foundation.framework in Frameworks */,
 				AF3CBD2E1D35571F00B1FAC6 /* AVFoundation.framework in Frameworks */,
 				AF3CBCF91D337DB800B1FAC6 /* CoreFoundation.framework in Frameworks */,
-				6456408996C9C1F3074251FB /* libPods.a in Frameworks */,
 				AF00E7021D404DE500A219F2 /* tingyunApp.framework in Frameworks */,
+				E5BFDBFDE6695145BA28BF65 /* libPods-BigToeTimer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,9 +271,18 @@
 				AF3CBD471D3CD9CB00B1FAC6 /* Foundation.framework */,
 				AF3CBD2D1D35571F00B1FAC6 /* AVFoundation.framework */,
 				AF3CBCF81D337DB800B1FAC6 /* CoreFoundation.framework */,
-				579A6E15FC0CE81AC3C176B2 /* libPods.a */,
+				44D2B614C04906EB1110A1F8 /* libPods-BigToeTimer.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		46FD5301EDEE10AAC4AD0284 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8BD93CEF2DBDBE43F57D7161 /* Pods-BigToeTimer.debug.xcconfig */,
+				83D396125DF62B1EAFE558CF /* Pods-BigToeTimer.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		AF00E6FA1D3E65AB00A219F2 /* 完成任务列表 */ = {
@@ -318,8 +324,8 @@
 				AF3CBC651D333DE800B1FAC6 /* Utils */,
 				AF3CBC641D333CCB00B1FAC6 /* Categories */,
 				AF3CBC631D333CC400B1FAC6 /* Resources */,
-				CAC71292F7A2D5A21E905B3A /* Pods */,
 				464BDCA47AF0DAF9461AB01D /* Frameworks */,
+				46FD5301EDEE10AAC4AD0284 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -449,8 +455,6 @@
 				AF3CBCF61D33784400B1FAC6 /* userMJ.m */,
 				AF3CBCFD1D3382D800B1FAC6 /* planMJ.h */,
 				AF3CBCFE1D3382D800B1FAC6 /* planMJ.m */,
-				AF3CBD321D37741B00B1FAC6 /* r_plan.h */,
-				AF3CBD331D37741B00B1FAC6 /* r_plan.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -647,15 +651,6 @@
 			name = "日期选择菜单";
 			sourceTree = "<group>";
 		};
-		CAC71292F7A2D5A21E905B3A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				4214051AC075E4B6A500E43E /* Pods.debug.xcconfig */,
-				926C71FBA4D484B45151CC27 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -663,12 +658,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AF3CBC5A1D333AB000B1FAC6 /* Build configuration list for PBXNativeTarget "BigToeTimer" */;
 			buildPhases = (
-				D9E3911DEE9709B027815D73 /* Check Pods Manifest.lock */,
+				1AB2048345D3B6A991583D96 /* [CP] Check Pods Manifest.lock */,
 				AF3CBC261D333AB000B1FAC6 /* Sources */,
 				AF3CBC271D333AB000B1FAC6 /* Frameworks */,
 				AF3CBC281D333AB000B1FAC6 /* Resources */,
-				B94B6C49EE9E51212E3245D9 /* Embed Pods Frameworks */,
-				3963FBC75364E1BD38CE990F /* Copy Pods Resources */,
+				E7CE0832AE1A6B0482FEA49A /* [CP] Embed Pods Frameworks */,
+				B4444D4531E5FAD63A5F4667 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -792,49 +787,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3963FBC75364E1BD38CE990F /* Copy Pods Resources */ = {
+		1AB2048345D3B6A991583D96 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		B94B6C49EE9E51212E3245D9 /* Embed Pods Frameworks */ = {
+		B4444D4531E5FAD63A5F4667 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BigToeTimer/Pods-BigToeTimer-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D9E3911DEE9709B027815D73 /* Check Pods Manifest.lock */ = {
+		E7CE0832AE1A6B0482FEA49A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BigToeTimer/Pods-BigToeTimer-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -883,7 +878,6 @@
 				AF3CBD3C1D3CC79600B1FAC6 /* AnalysisTableViewController.m in Sources */,
 				AF3CBD191D348BCE00B1FAC6 /* m_date.m in Sources */,
 				AF00E7001D3FAE6D00A219F2 /* NSDate+Format.m in Sources */,
-				AF3CBD341D37741B00B1FAC6 /* r_plan.m in Sources */,
 				AF3CBCD61D33515200B1FAC6 /* FAImageView.m in Sources */,
 				AF3CBCE11D33757F00B1FAC6 /* SettingsViewController.m in Sources */,
 				AF00E7121D40547A00A219F2 /* AboutViewController.m in Sources */,
@@ -1023,11 +1017,12 @@
 		};
 		AF3CBC5B1D333AB000B1FAC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4214051AC075E4B6A500E43E /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 8BD93CEF2DBDBE43F57D7161 /* Pods-BigToeTimer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = GU4D32EH4Q;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1045,11 +1040,12 @@
 		};
 		AF3CBC5C1D333AB000B1FAC6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 926C71FBA4D484B45151CC27 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 83D396125DF62B1EAFE558CF /* Pods-BigToeTimer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = GU4D32EH4Q;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

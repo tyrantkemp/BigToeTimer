@@ -59,11 +59,6 @@ PODS:
     - AFNetworking (~> 3)
     - HappyDNS (~> 0.3)
   - Reachability (3.2)
-  - Realm (0.98.5):
-    - Realm/Headers (= 0.98.5)
-  - Realm+JSON (0.2.14):
-    - Realm (~> 0.95)
-  - Realm/Headers (0.98.5)
   - RESideMenu (4.0.7)
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
@@ -92,8 +87,6 @@ DEPENDENCIES:
   - pop
   - Qiniu (~> 7.0)
   - Reachability
-  - Realm (= 0.98.5)
-  - Realm+JSON (~> 0.2)
   - RESideMenu (~> 4.0.7)
   - SDWebImage
   - SSKeychain
@@ -122,8 +115,6 @@ SPEC CHECKSUMS:
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   Qiniu: 0e92ff0d1b9afbc55275306671284e4ebeb08d03
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  Realm: db08379969e45cea2edd1c3c0a090fe9e22d2d2f
-  Realm+JSON: 39bef066156e589b209a14e5f2d68754793f8843
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SSKeychain: 55cc80f66f5c73da827e3077f02e43528897db41
@@ -133,4 +124,6 @@ SPEC CHECKSUMS:
   UMengSocial: 48b67179c492a8cf7803fbb0438b8f55432e2fc1
   ZXPAutoLayout: 2f3bc9031705d2d447330f469c0f367c0591bd2f
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 2edb6162f10e9543d25737dcfc3f0ca48bc7857f
+
+COCOAPODS: 1.1.1

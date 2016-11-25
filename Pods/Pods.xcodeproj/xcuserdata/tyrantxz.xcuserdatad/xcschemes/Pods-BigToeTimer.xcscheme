@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '04CF549EBEEE7BC87AEAE35397184D94'
-               BlueprintName = 'MJRefresh'
+               BlueprintIdentifier = '8EE191BEE16F85B769210973DC672CC2'
+               BlueprintName = 'Pods-BigToeTimer'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libMJRefresh.a'>
+               BuildableName = 'libPods-BigToeTimer.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
